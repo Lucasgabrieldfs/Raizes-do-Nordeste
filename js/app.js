@@ -219,7 +219,7 @@ const appState = {
   
   authToken: null,
   clientUser: {
-    nome: 'Lucas Gabriel (Cliente)',
+    nome: 'Lucas Gabriel de Freitas Silva (Cliente)',
     email: 'cliente@exemplo.com',
     saldoPontos: 25,
     consentimentoLGPD: true
@@ -1946,7 +1946,7 @@ function showToast(message, type = 'info') {
 // GESTÃO DE AUTENTICAÇÃO JWT & PERFIS RBAC (CLIENTE, ATENDENTE, COZINHA, ADMIN)
 // ==========================================================================
 const quickUsers = {
-  cliente: { email: 'cliente@exemplo.com', senha: 'Senha@123', nome: 'Lucas Gabriel', role: 'CLIENTE' },
+  cliente: { email: 'cliente@exemplo.com', senha: 'Senha@123', nome: 'Lucas Gabriel de Freitas Silva', role: 'CLIENTE' },
   atendente: { email: 'atendente@raizesdonordeste.com.br', senha: 'Senha@123', nome: 'Maria Silva', role: 'ATENDENTE' },
   cozinha: { email: 'cozinha@raizesdonordeste.com.br', senha: 'Senha@123', nome: 'Severino José', role: 'COZINHA' },
   admin: { email: 'admin@raizesdonordeste.com.br', senha: 'Admin@123', nome: 'Administrador Franquia', role: 'ADMIN' }
