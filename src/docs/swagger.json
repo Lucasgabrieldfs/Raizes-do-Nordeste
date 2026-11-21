@@ -5,7 +5,7 @@
     "version": "1.0.0",
     "description": "API RESTful da Rede de Lanchonetes 'Raízes do Nordeste' desenvolvida para a Atividade Prática de Projeto Multidisciplinar (Trilha Back-End) da UNINTER.\n\nRecursos destacados:\n- **Multicanalidade de Domínio:** Tratamento do campo `canalPedido` (APP, TOTEM, BALCAO, PICKUP, WEB).\n- **Isolamento de Estoque:** Validação atômica e saldo segregado por unidade física.\n- **Gateway Mock:** Simulação desacoplada de pagamentos (Aprovação, Recusa e Timeout).\n- **Segurança & LGPD:** Autenticação Bearer JWT, controle de acesso RBAC, hash Bcrypt e logs de auditoria.\n- **Padrão de Resposta:** Tratamento uniforme de erros conforme RFC 7807.",
     "contact": {
-      "name": "Lucas Gabriel",
+      "name": "Lucas Gabriel de Freitas Silva",
       "email": "lucas.gabriel@uninter.edu.br",
       "url": "https://github.com/lucasgabriel-uninter/raizes-do-nordeste-api"
     }
@@ -40,7 +40,7 @@
                 "type": "object",
                 "required": ["nome", "email", "senha", "consentimentoLGPD"],
                 "properties": {
-                  "nome": { "type": "string", "example": "Lucas Gabriel" },
+                  "nome": { "type": "string", "example": "Lucas Gabriel de Freitas Silva" },
                   "email": { "type": "string", "format": "email", "example": "novo.cliente@exemplo.com" },
                   "senha": { "type": "string", "format": "password", "example": "Senha@123" },
                   "telefone": { "type": "string", "example": "(61) 99999-0000" },
@@ -108,7 +108,7 @@
                       "type": "object",
                       "properties": {
                         "id": { "type": "integer", "example": 4 },
-                        "nome": { "type": "string", "example": "Lucas Gabriel" },
+                        "nome": { "type": "string", "example": "Lucas Gabriel de Freitas Silva" },
                         "email": { "type": "string", "example": "cliente@exemplo.com" },
                         "perfil": { "type": "string", "example": "CLIENTE" }
                       }

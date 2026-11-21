@@ -23,7 +23,7 @@
     "multicanalidade",
     "lgpd"
   ],
-  "author": "Lucas Gabriel (RU: 4840330)",
+  "author": "Lucas Gabriel de Freitas Silva (RU: 4840330)",
   "license": "MIT",
   "dependencies": {
     "@prisma/client": "^5.22.0",

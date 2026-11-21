@@ -45,7 +45,7 @@ app.get('/health', (req, res) => {
   res.status(200).json({
     status: 'ONLINE',
     projeto: 'Rede Raízes do Nordeste - Trilha Back-End UNINTER',
-    estudante: 'Lucas Gabriel',
+    estudante: 'Lucas Gabriel de Freitas Silva',
     ru: '4840330',
     versao: '1.0.0',
     swagger: 'http://localhost:3000/api-docs',
@@ -77,7 +77,7 @@ const server = app.listen(PORT, () => {
   console.log(`🚀 SERVIDOR DA REDE "RAÍZES DO NORDESTE" OPERANDO NA PORTA ${PORT}`);
   console.log(`📍 Swagger UI (OpenAPI 3.0): http://localhost:${PORT}/api-docs`);
   console.log(`🍔 Painel Visual (Totem & KDS): http://localhost:${PORT}/demo`);
-  console.log(`🎓 Estudante: Lucas Gabriel | RU: 4840330 | Polo: Formosa-GO`);
+  console.log(`🎓 Estudante: Lucas Gabriel de Freitas Silva | RU: 4840330 | Polo: Formosa-GO`);
   console.log(`================================================================`);
 });
 

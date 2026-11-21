@@ -64,7 +64,7 @@ async function main() {
 
   const cliente = await prisma.usuario.create({
     data: {
-      nome: 'Lucas Gabriel (Cliente)',
+      nome: 'Lucas Gabriel de Freitas Silva (Cliente)',
       email: 'cliente@exemplo.com',
       senha: senhaPadrao,
       telefone: '(61) 99999-1234',

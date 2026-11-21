@@ -2,7 +2,7 @@
   "info": {
     "_postman_id": "a9876543-210b-4fed-cba9-1234567890ab",
     "name": "Raízes do Nordeste - API Oficial (UNINTER)",
-    "description": "Coleção de Testes Oficiais da API RESTful 'Raízes do Nordeste' - Projeto Multidisciplinar Back-End UNINTER.\nEstudante: Lucas Gabriel | RU: 4840330 | Polo: Formosa-GO\n\nContém os 10 cenários de testes estruturados (positivos e negativos), cobrindo multicanalidade (canalPedido), estoque, mock de pagamento, auditoria e LGPD.",
+    "description": "Coleção de Testes Oficiais da API RESTful 'Raízes do Nordeste' - Projeto Multidisciplinar Back-End UNINTER.\nEstudante: Lucas Gabriel de Freitas Silva | RU: 4840330 | Polo: Formosa-GO\n\nContém os 10 cenários de testes estruturados (positivos e negativos), cobrindo multicanalidade (canalPedido), estoque, mock de pagamento, auditoria e LGPD.",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
   },
   "variable": [
@@ -34,7 +34,7 @@
             "header": [{ "key": "Content-Type", "value": "application/json" }],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"nome\": \"Lucas Gabriel\",\n  \"email\": \"lucas.teste@uninter.com\",\n  \"senha\": \"Senha@123\",\n  \"telefone\": \"(61) 99999-8888\",\n  \"perfil\": \"CLIENTE\",\n  \"consentimentoLGPD\": true\n}"
+              "raw": "{\n  \"nome\": \"Lucas Gabriel de Freitas Silva\",\n  \"email\": \"lucas.teste@uninter.com\",\n  \"senha\": \"Senha@123\",\n  \"telefone\": \"(61) 99999-8888\",\n  \"perfil\": \"CLIENTE\",\n  \"consentimentoLGPD\": true\n}"
             },
             "url": { "raw": "{{baseUrl}}/auth/register", "host": ["{{baseUrl}}"], "path": ["auth", "register"] }
           }

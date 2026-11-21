@@ -11,7 +11,7 @@
 ---
 
 ## 👨‍🎓 Dados de Identificação do Estudante
-- **Nome:** Lucas Gabriel
+- **Nome:** Lucas Gabriel de Freitas Silva
 - **RU:** 4840330
 - **Polo:** Formosa - GO / Polo Formosa-GO
 - **Curso:** Análise e Desenvolvimento de Sistemas
@@ -156,7 +156,7 @@ O sistema conta com 4 perfis de usuários pré-cadastrados no banco de dados par
 
 | Papel (Role) | Nome do Usuário | E-mail | Senha | Permissões & Atribuições |
 |---|---|---|---|---|
-| **`CLIENTE`** | Lucas Gabriel | `cliente@exemplo.com` | `Senha@123` | Realização de pedidos (Web/App), consulta de cardápio e saldo do programa de fidelidade LGPD. |
+| **`CLIENTE`** | Lucas Gabriel de Freitas Silva | `cliente@exemplo.com` | `Senha@123` | Realização de pedidos (Web/App), consulta de cardápio e saldo do programa de fidelidade LGPD. |
 | **`ATENDENTE`** | Maria Silva | `atendente@raizesdonordeste.com.br` | `Senha@123` | Operação do caixa de atendimento presencial (`BALCAO` e `PICKUP`), com calculadora de troco em dinheiro. |
 | **`COZINHA`** | Severino José | `cozinha@raizesdonordeste.com.br` | `Senha@123` | Operador do painel KDS, transiciona o status do pedido para `PRONTO` e `ENTREGUE`. |
 | **`ADMIN`** | Administrador Franquia | `admin@raizesdonordeste.com.br` | `Admin@123` | Acesso total irrestrito: consulta de trilha de auditoria (`audit_logs`), relatórios e gestão de estoque. |
