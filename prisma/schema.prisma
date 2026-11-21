@@ -1,0 +1,137 @@
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Usuario {
+  id                Int                @id @default(autoincrement())
+  nome              String
+  email             String             @unique
+  senha             String
+  telefone          String?
+  perfil            String             @default("CLIENTE") // CLIENTE, ATENDENTE, COZINHA, ADMIN
+  consentimentoLGPD Boolean            @default(false)
+  criadoEm          DateTime           @default(now())
+  pedidos           Pedido[]
+  fidelidade        FidelidadePontos?
+  logs              LogAuditoria[]
+
+  @@map("usuarios")
+}
+
+model Unidade {
+  id        Int              @id @default(autoincrement())
+  nome      String
+  endereco  String
+  cidade    String
+  estado    String
+  telefone  String
+  ativo     Boolean          @default(true)
+  criadoEm  DateTime         @default(now())
+  estoques  EstoqueUnidade[]
+  pedidos   Pedido[]
+
+  @@map("unidades")
+}
+
+model Produto {
+  id          Int              @id @default(autoincrement())
+  nome        String
+  descricao   String
+  categoria   String           // CUSCUZ, TAPIOCAS, PRATOS, BEBIDAS, SOBREMESAS
+  preco       Float
+  imagem      String?
+  ativo       Boolean          @default(true)
+  criadoEm    DateTime         @default(now())
+  estoques    EstoqueUnidade[]
+  itensPedido ItemPedido[]
+
+  @@map("produtos")
+}
+
+model EstoqueUnidade {
+  id                   Int      @id @default(autoincrement())
+  unidadeId            Int
+  produtoId            Int
+  quantidadeDisponivel Int      @default(0)
+  quantidadeMinima     Int      @default(5)
+  atualizadoEm         DateTime @updatedAt
+  unidade              Unidade  @relation(fields: [unidadeId], references: [id], onDelete: Cascade)
+  produto              Produto  @relation(fields: [produtoId], references: [id], onDelete: Cascade)
+
+  @@unique([unidadeId, produtoId])
+  @@map("estoque_unidade")
+}
+
+model Pedido {
+  id           Int                  @id @default(autoincrement())
+  unidadeId    Int
+  usuarioId    Int?
+  canalPedido  String               // APP, TOTEM, BALCAO, PICKUP, WEB (Obrigatório)
+  status       String               @default("AGUARDANDO_PAGAMENTO") // AGUARDANDO_PAGAMENTO, EM_PREPARO, PRONTO, ENTREGUE, CANCELADO
+  valorTotal   Float
+  observacoes  String?
+  criadoEm     DateTime             @default(now())
+  atualizadoEm DateTime             @updatedAt
+  unidade      Unidade              @relation(fields: [unidadeId], references: [id])
+  usuario      Usuario?             @relation(fields: [usuarioId], references: [id])
+  itens        ItemPedido[]
+  pagamentos   TransacaoPagamento[]
+
+  @@map("pedidos")
+}
+
+model ItemPedido {
+  id            Int      @id @default(autoincrement())
+  pedidoId      Int
+  produtoId     Int
+  quantidade    Int
+  precoUnitario Float
+  subtotal      Float
+  pedido        Pedido   @relation(fields: [pedidoId], references: [id], onDelete: Cascade)
+  produto       Produto  @relation(fields: [produtoId], references: [id])
+
+  @@map("itens_pedido")
+}
+
+model TransacaoPagamento {
+  id              Int      @id @default(autoincrement())
+  pedidoId        Int
+  formaPagamento  String   // PIX, CARTAO_CREDITO, CARTAO_DEBITO, DINHEIRO
+  statusTransacao String   // APROVADO, RECUSADO, TIMEOUT
+  valorPago       Float
+  protocoloMock   String
+  criadoEm        DateTime @default(now())
+  pedido          Pedido   @relation(fields: [pedidoId], references: [id], onDelete: Cascade)
+
+  @@map("transacoes_pagamento")
+}
+
+model FidelidadePontos {
+  id                Int      @id @default(autoincrement())
+  usuarioId         Int      @unique
+  cpf               String?
+  saldoPontos       Int      @default(0)
+  consentimentoLGPD Boolean  @default(true)
+  atualizadoEm      DateTime @updatedAt
+  usuario           Usuario  @relation(fields: [usuarioId], references: [id], onDelete: Cascade)
+
+  @@map("fidelidade_pontos")
+}
+
+model LogAuditoria {
+  id              Int      @id @default(autoincrement())
+  usuarioId       Int?
+  acao            String
+  recurso         String
+  payloadResumido String?
+  enderecoIp      String?
+  dataHora        DateTime @default(now())
+  usuario         Usuario? @relation(fields: [usuarioId], references: [id])
+
+  @@map("audit_logs")
+}

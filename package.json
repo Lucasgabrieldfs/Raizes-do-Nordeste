@@ -1,0 +1,42 @@
+{
+  "name": "raizes-do-nordeste-api",
+  "version": "1.0.0",
+  "description": "API RESTful da Rede de Lanchonetes Raízes do Nordeste - Projeto Multidisciplinar UNINTER",
+  "main": "src/app.js",
+  "type": "module",
+  "scripts": {
+    "start": "node src/app.js",
+    "dev": "node --watch src/app.js",
+    "setup": "npx prisma db push && node prisma/seed.js",
+    "prisma:push": "npx prisma db push",
+    "prisma:generate": "npx prisma generate",
+    "prisma:seed": "node prisma/seed.js"
+  },
+  "keywords": [
+    "uninter",
+    "backend",
+    "api-rest",
+    "express",
+    "prisma",
+    "sqlite",
+    "swagger",
+    "multicanalidade",
+    "lgpd"
+  ],
+  "author": "Lucas Gabriel (RU: 4840330)",
+  "license": "MIT",
+  "dependencies": {
+    "@prisma/client": "^5.22.0",
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "jsonwebtoken": "^9.0.2",
+    "swagger-ui-express": "^5.0.1",
+    "uuid": "^11.0.5",
+    "zod": "^3.24.1"
+  },
+  "devDependencies": {
+    "prisma": "^5.22.0"
+  }
+}
