@@ -3,6 +3,11 @@
 **Atividade Prática de Projeto Multidisciplinar – Trilha Back-End**  
 **Centro Universitário Internacional UNINTER**
 
+[![GitHub Pages](https://img.shields.io/badge/Demo%20Online-GitHub%20Pages-brightgreen?style=for-the-badge&logo=github)](https://lucasgabrieldfs.github.io/Raizes-do-Nordeste/)
+
+> 🌐 **Acesse a demonstração online em tempo real:**  
+> **[https://lucasgabrieldfs.github.io/Raizes-do-Nordeste/](https://lucasgabrieldfs.github.io/Raizes-do-Nordeste/)**
+
 ---
 
 ## 👨‍🎓 Dados de Identificação do Estudante
@@ -103,8 +108,8 @@ raizes-do-nordeste/
 ### 4.2 Instalação das Dependências
 Clone o repositório e instale os pacotes:
 ```bash
-git clone https://github.com/lucasgabriel-uninter/raizes-do-nordeste-api.git
-cd raizes-do-nordeste-api
+git clone https://github.com/Lucasgabrieldfs/Raizes-do-Nordeste.git
+cd Raizes-do-Nordeste
 npm install
 ```
 
@@ -134,11 +139,12 @@ O servidor estará operando em: **`http://localhost:3000`**
 
 ---
 
-## 🌐 5. Acessos do Professor Avaliador
+## 🌐 5. Acessos do Professor Avaliador & Links
 
 | Recurso | URL | Descrição |
 |---|---|---|
-| **Painel Visual Multicanal & Telas de Atendimento** | [http://localhost:3000/demo](http://localhost:3000/demo) | Telas dedicadas dos 5 canais (`TOTEM`, `APP`, `BALCÃO`, `PICKUP`, `WEB`), Cozinha KDS, Monitor REST e Login RBAC |
+| **Demonstração Online (GitHub Pages)** | [https://lucasgabrieldfs.github.io/Raizes-do-Nordeste/](https://lucasgabrieldfs.github.io/Raizes-do-Nordeste/) | Front-end interativo com os 5 canais, KDS da Cozinha e simulador de pagamentos mock |
+| **Painel Local Multicanal** | [http://localhost:3000/demo](http://localhost:3000/demo) | Telas dedicadas dos 5 canais (`TOTEM`, `APP`, `BALCÃO`, `PICKUP`, `WEB`), Cozinha KDS e Login RBAC |
 | **Documentação Swagger UI** | [http://localhost:3000/api-docs](http://localhost:3000/api-docs) | OpenAPI 3.0 interativo com try-it-out de todas as rotas e contratos |
 | **Health Check da Aplicação** | [http://localhost:3000/health](http://localhost:3000/health) | Verificação de status online e metadados acadêmicos do estudante |
 
