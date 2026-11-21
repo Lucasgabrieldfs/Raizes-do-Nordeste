@@ -1,0 +1,1180 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Raízes do Nordeste | Sabor Autêntico Regional & Multicanalidade</title>
+  
+  <!-- Tipografia Google Fonts: Outfit (Display) & Poppins (Textos) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;700;800;900&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  
+  <!-- Folha de Estilos do Design System -->
+  <link rel="stylesheet" href="css/styles.css?v=2.2" />
+</head>
+<body>
+
+  <!-- ========================================================================
+       BARRA SUPERIOR DE CONFORMIDADE ACADÊMICA UNINTER
+       ======================================================================== -->
+  <aside class="topbar-academic-notice" aria-label="Informações Acadêmicas">
+    <div>
+      🎓 <strong>UNINTER</strong> — Projeto Multidisciplinar (Trilha Back-End)
+    </div>
+    <div class="academic-meta">
+      <span>Estudante: <strong>Lucas Gabriel</strong></span>
+      <span>RU: <strong>4840330</strong></span>
+      <span>Polo: <strong>Formosa - GO</strong></span>
+    </div>
+  </aside>
+
+  <!-- ========================================================================
+       CABEÇALHO INSTITUCIONAL & CONTROLES DE DOMÍNIO
+       ======================================================================== -->
+  <header class="main-header">
+    <div class="header-container">
+      
+      <!-- Logomarca Raízes do Nordeste -->
+      <a href="#" class="brand" title="Ir para a página inicial" onclick="selectChannel('WEB'); return false;">
+        <div class="brand-icon">☀️</div>
+        <div class="brand-text">
+          <h1>Raízes do <span>Nordeste</span></h1>
+          <p>Sabor Autêntico & Tradição</p>
+        </div>
+      </a>
+
+      <!-- Controles de Contexto: Unidade & Multicanalidade (canalPedido) -->
+      <div class="header-controls">
+        
+        <!-- Seleção de Loja / Unidade -->
+        <div class="control-group">
+          <label for="unitSelector" class="control-label">Unidade / Loja</label>
+          <select id="unitSelector" class="select-custom">
+            <option value="1" selected>Recife - Matriz (PE)</option>
+            <option value="2">Salvador - Pelourinho (BA)</option>
+            <option value="3">Fortaleza - Beira-Mar (CE)</option>
+          </select>
+        </div>
+
+        <!-- Seletor Obrigatório de canalPedido (Enum) com Telas Dedicadas -->
+        <div class="control-group">
+          <span class="control-label">Telas dos Canais de Atendimento</span>
+          <div class="channel-selector" role="group" aria-label="Canal do Pedido">
+            <button class="channel-btn active" data-channel="TOTEM" title="Totem de Autoatendimento em Loja">🖥️ TOTEM</button>
+            <button class="channel-btn" data-channel="APP" title="Aplicativo Mobile com Login JWT">📱 APP</button>
+            <button class="channel-btn" data-channel="BALCAO" title="Terminal PDV do Atendente de Caixa">🏪 BALCÃO</button>
+            <button class="channel-btn" data-channel="PICKUP" title="Retirada Expressa Agendada em Loja">📦 PICKUP</button>
+            <button class="channel-btn" data-channel="WEB" title="Portal Web Delivery & E-commerce">🌐 WEB</button>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Alternador de Visão de Operação (Canais vs Cozinha KDS vs Monitor API) -->
+      <div style="display: flex; align-items: center; gap: 12px;">
+        
+        <div class="view-mode-tabs" role="tablist">
+          <button class="view-tab-btn active" data-view="CHANNEL" role="tab" title="Exibe a tela especializada do canal selecionado">🛍️ Canal</button>
+          <button class="view-tab-btn" data-view="KDS" role="tab" title="Monitor da Cozinha onde convergem todos os pedidos">👨‍🍳 Cozinha KDS</button>
+          <button class="view-tab-btn" data-view="MONITOR" role="tab" title="Painel de Integração de API & Auditoria">📊 Monitor & API</button>
+        </div>
+
+        <!-- Botão de Autenticação JWT & Perfis de Teste RBAC -->
+        <button id="btnOpenAuthModal" class="auth-trigger-btn" onclick="openAuthModal()" title="Autenticação JWT & Perfis RBAC">
+          <span id="authBadgeIcon">👤</span>
+          <span id="authBadgeLabel">Lucas Gabriel</span>
+          <span id="authBadgeRole" class="auth-role-tag CLIENTE">CLIENTE</span>
+        </button>
+
+        <button id="btnOpenCart" class="cart-trigger-btn" aria-label="Abrir Carrinho de Compras">
+          <span>Cesta</span>
+          <span id="cartBadgeCount" class="cart-count-badge">0</span>
+        </button>
+
+      </div>
+
+    </div>
+  </header>
+
+  <!-- ========================================================================
+       HERO BANNER REGIONAL & INDICADOR DE MODO OPERACIONAL
+       ======================================================================== -->
+  <section class="hero-banner">
+    <div class="hero-content">
+      <div class="hero-text-col">
+        <span class="hero-tag">🌾 Gastronomia Regional Nordestina & Multicanalidade</span>
+        <h2 class="hero-title">O Verdadeiro Sabor do Sertão <span>na Sua Mesa</span></h2>
+        <p class="hero-desc">
+          Cuscuz no vapor hidratado na manteiga de garrafa, tapiocas artesanais rendadas com crosta de queijo coalho e o legítimo baião de dois cremoso.
+        </p>
+        <div class="hero-features">
+          <div class="hero-feature-item">
+            <i>⚡</i> Preparo Rápido & Artesanal
+          </div>
+          <div class="hero-feature-item">
+            <i>🧀</i> Queijo Coalho do Agreste
+          </div>
+          <div class="hero-feature-item">
+            <i>🔄</i> 5 Canais com API REST Integrada
+          </div>
+        </div>
+      </div>
+
+      <!-- Card Flutuante de Indicador de Canal Ativo -->
+      <div class="hero-active-channel-card">
+        <span class="active-channel-label">Canal Operacional Ativo</span>
+        <div class="active-channel-name">
+          <span id="heroActiveChannel">TOTEM</span>
+        </div>
+        <span id="heroActiveUnit" class="active-unit-badge">Recife - Matriz (PE)</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       BARRA DE CONTEXTO E ESPECIFICAÇÃO DE REQUISITOS DO CANAL ATIVO
+       ======================================================================== -->
+  <section id="channelContextBanner" class="channel-context-banner">
+    <div class="channel-context-info">
+      <div id="channelContextIcon" class="channel-context-icon">🖥️</div>
+      <div class="channel-context-desc">
+        <h3 id="channelContextTitle">Canal TOTEM: Autoatendimento em Loja Física</h3>
+        <p id="channelContextDesc">Operação rápida em quiosque touch-screen, CPF facultativo para fidelidade, pagamento direto no terminal e emissão de senha de retirada.</p>
+      </div>
+    </div>
+    <div id="channelFeaturePills" class="channel-features-pills">
+      <span class="channel-feat-pill">⚡ Touch Screen</span>
+      <span class="channel-feat-pill">🛡️ CPF Facultativo</span>
+      <span class="channel-feat-pill">💳 Pagamento Instantâneo</span>
+      <span class="channel-feat-pill">🎫 Senha #T-XXX</span>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       CONTEÚDO PRINCIPAL (TELAS DOS 5 CANAIS + KDS + MONITOR)
+       ======================================================================== -->
+  <main class="main-content">
+
+    <!-- ======================================================================
+         1. TELA DO CANAL TOTEM (Autoatendimento Presencial em Quiosque)
+         ====================================================================== -->
+    <div id="totemViewContainer" class="totem-kiosk-wrapper">
+      <div class="totem-kiosk-frame">
+        
+        <div class="totem-kiosk-screen">
+          <!-- Cabeçalho do Totem -->
+          <div class="totem-screen-header">
+            <div class="totem-brand-box">
+              <span style="font-size: 1.6rem;">☀️</span>
+              <div>
+                <strong style="font-size: 1.1rem; display: block;">Raízes do Nordeste — Totem Express</strong>
+                <span style="font-size: 0.78rem; opacity: 0.9;">Toque nos itens na tela para montar seu pedido</span>
+              </div>
+            </div>
+            <div class="totem-terminal-id">
+              🖥️ Totem #01 • <span id="totemUnitName">Recife - Matriz</span>
+            </div>
+          </div>
+
+          <!-- Corpo do Totem: Catálogo Touch + Comanda Lateral -->
+          <div class="totem-body-layout">
+            
+            <!-- Área de Produtos Touch -->
+            <div class="totem-products-area">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px;">
+                <h3 style="font-size: 1.05rem; font-weight: 800; color: var(--color-clay);">Cardápio Touch-Screen</h3>
+                <span style="font-size: 0.75rem; color: var(--text-muted);">Estoque validado em tempo real</span>
+              </div>
+              
+              <div id="totemProductsGrid" class="totem-products-grid">
+                <!-- Inserido dinamicamente via JS -->
+              </div>
+            </div>
+
+            <!-- Painel Lateral da Cesta do Totem -->
+            <div class="totem-basket-panel">
+              <div class="totem-basket-header">
+                <h4 style="font-size: 0.95rem; font-weight: 800; color: var(--color-clay); display: flex; align-items: center; gap: 8px;">
+                  <span>🛒</span> Seu Pedido no Totem
+                </h4>
+                <span id="totemBasketCount" style="font-size: 0.75rem; color: var(--text-muted);">0 itens adicionados</span>
+              </div>
+
+              <div id="totemBasketItems" class="totem-basket-items">
+                <p style="text-align: center; color: var(--text-muted); font-size: 0.8rem; padding: 40px 10px;">
+                  Toque em "+ Adicionar" em qualquer item para iniciar seu pedido.
+                </p>
+              </div>
+
+              <div class="totem-basket-footer">
+                <div style="display: flex; justify-content: space-between; margin-bottom: 8px; font-weight: 700; font-size: 1.1rem;">
+                  <span>Total:</span>
+                  <span id="totemBasketTotal" style="color: var(--color-terracotta);">R$ 0,00</span>
+                </div>
+                <button id="btnOpenTotemCheckout" class="totem-btn-finish" onclick="openTotemCheckoutModal()" disabled>
+                  Pagar e Retirar Senha ➔
+                </button>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ======================================================================
+         2. TELA DO CANAL APP (Aplicativo Smartphone "Raízes no Bolso")
+         ====================================================================== -->
+    <div id="appViewContainer" class="app-channel-wrapper" style="display: none;">
+      <div class="smartphone-frame">
+        <div class="smartphone-notch">
+          <div class="smartphone-camera-dot"></div>
+        </div>
+
+        <div class="smartphone-screen">
+          
+          <!-- Barra de Status do Celular -->
+          <div class="smartphone-status-bar">
+            <span>09:41</span>
+            <span>📶 5G 🔋 100%</span>
+          </div>
+
+          <!-- Topo do App Mobile -->
+          <div class="smartphone-app-header">
+            <div>
+              <strong style="font-size: 0.95rem; display: block;">Raízes no Bolso 📱</strong>
+              <span id="appSubheaderUnit" style="font-size: 0.7rem; opacity: 0.9;">Recife - Matriz (PE)</span>
+            </div>
+            <div class="app-user-badge">
+              <span>👤</span>
+              <span id="appUserName">Lucas Gabriel</span>
+            </div>
+          </div>
+
+          <!-- Conteúdo com Abas Internas do App -->
+          <div class="app-screen-content">
+            
+            <!-- Sub-Aba 1: Cardápio do App -->
+            <div id="appTabCardapio">
+              <!-- Banner Promocional do App com Fidelidade -->
+              <div class="app-fidelity-banner">
+                <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+                  <div>
+                    <span style="font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.05em; opacity: 0.9;">Programa Raízes Fidelidade</span>
+                    <div id="appFidelityPointsDisplay" class="app-fidelity-points-big">25 pts</div>
+                    <span style="font-size: 0.72rem; opacity: 0.9;">1 ponto a cada R$ 10 em compras</span>
+                  </div>
+                  <span style="font-size: 1.8rem;">⭐</span>
+                </div>
+                <div style="margin-top: 10px; font-size: 0.68rem; background: rgba(0,0,0,0.25); padding: 4px 8px; border-radius: 4px;">
+                  ✓ Consentimento LGPD ativo via JWT
+                </div>
+              </div>
+
+              <!-- Lista de Pratos no App -->
+              <h4 style="font-size: 0.85rem; font-weight: 700; color: var(--color-clay); margin-bottom: 8px;">Destaques para Você</h4>
+              <div id="appProductsList" style="display: flex; flex-direction: column; gap: 10px;">
+                <!-- Itens inseridos dinamicamente -->
+              </div>
+            </div>
+
+            <!-- Sub-Aba 2: Entrega e Taxa -->
+            <div id="appTabEntrega" style="display: none;">
+              <h4 style="font-size: 0.9rem; font-weight: 700; color: var(--color-clay); margin-bottom: 12px;">📍 Endereço de Entrega</h4>
+              <div style="background: #ffffff; padding: 12px; border-radius: var(--radius-md); border: 1px solid var(--border-medium); margin-bottom: 14px;">
+                <label style="font-size: 0.72rem; font-weight: 700; color: var(--text-muted); display: block; margin-bottom: 4px;">Rua e Número</label>
+                <input type="text" id="appDeliveryAddress" class="input-fidelity" value="Rua das Flores, 120 - Apto 302" style="font-size: 0.8rem; padding: 6px 10px;" />
+                
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--border-light);">
+                  <span style="font-size: 0.78rem; color: var(--text-secondary);">Taxa de Entrega / Conveniência:</span>
+                  <strong style="color: var(--color-terracotta); font-size: 0.85rem;">R$ 5,90</strong>
+                </div>
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 4px;">
+                  <span style="font-size: 0.78rem; color: var(--text-secondary);">Previsão de Chegada:</span>
+                  <span style="font-size: 0.78rem; font-weight: 600;">30 a 40 min</span>
+                </div>
+              </div>
+
+              <div style="background: #ffffff; padding: 12px; border-radius: var(--radius-md); border: 1px solid var(--border-medium);">
+                <label style="font-size: 0.72rem; font-weight: 700; color: var(--text-muted); display: block; margin-bottom: 4px;">Instruções ao Entregador</label>
+                <input type="text" id="appDeliveryNotes" class="input-fidelity" placeholder="Ex.: Deixar na portaria, interfone 302..." style="font-size: 0.8rem; padding: 6px 10px;" />
+              </div>
+            </div>
+
+            <!-- Sub-Aba 3: Acompanhamento de Pedido ao Vivo -->
+            <div id="appTabPedidos" style="display: none;">
+              <h4 style="font-size: 0.9rem; font-weight: 700; color: var(--color-clay); margin-bottom: 6px;">📦 Meus Pedidos no App</h4>
+              <p style="font-size: 0.72rem; color: var(--text-muted); margin-bottom: 12px;">Acompanhamento em tempo real sincronizado com a API</p>
+
+              <div id="appActiveOrderCard" class="app-order-tracker-box">
+                <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border-light); padding-bottom: 8px;">
+                  <strong id="appTrackerOrderId" style="font-size: 0.85rem; color: var(--color-clay);">Pedido #102</strong>
+                  <span id="appTrackerBadgeStatus" class="channel-tag-badge tag-APP">EM_PREPARO</span>
+                </div>
+
+                <div class="app-stepper">
+                  <div id="stepAguardando" class="app-step-item completed">
+                    <strong>1. Pedido Recebido</strong>
+                    <div style="font-size: 0.7rem; color: var(--text-muted);">Pagamento validado pelo Gateway Mock</div>
+                  </div>
+                  <div id="stepPreparo" class="app-step-item active">
+                    <strong>2. Na Cozinha (Em Preparo)</strong>
+                    <div style="font-size: 0.7rem; color: var(--text-muted);">Cozinheiros preparando as receitas regionais</div>
+                  </div>
+                  <div id="stepPronto" class="app-step-item">
+                    <strong>3. Pronto para Entrega / Rota</strong>
+                    <div style="font-size: 0.7rem; color: var(--text-muted);">Aguardando motoboy retirar</div>
+                  </div>
+                  <div id="stepEntregue" class="app-step-item">
+                    <strong>4. Entregue</strong>
+                    <div style="font-size: 0.7rem; color: var(--text-muted);">Bom apetite! Pontos creditados</div>
+                  </div>
+                </div>
+
+                <button class="btn-balcao-finalize" style="margin-top: 14px; width: 100%; font-size: 0.8rem; padding: 8px;" onclick="refreshAppOrderStatus()">
+                  🔄 Atualizar Status via API
+                </button>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Barra de Ação Inferior do App (Carrinho & Envio) -->
+          <div style="background: #ffffff; padding: 10px 14px; border-top: 1px solid var(--border-medium);">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+              <span style="font-size: 0.75rem; color: var(--text-muted);">Subtotal no App:</span>
+              <strong id="appSubtotalDisplay" style="font-size: 0.95rem; color: var(--color-terracotta);">R$ 0,00</strong>
+            </div>
+            <button id="btnAppSubmitOrder" class="btn-checkout-proceed" style="padding: 10px; font-size: 0.88rem;" onclick="handleAppCheckout()">
+              Pedir via APP (canalPedido="APP") ➔
+            </button>
+          </div>
+
+          <!-- Barra de Navegação Inferior do Smartphone -->
+          <nav class="app-bottom-nav">
+            <button class="app-nav-item active" onclick="switchAppTab('cardapio')">
+              <i>🍽️</i>
+              <span>Cardápio</span>
+            </button>
+            <button class="app-nav-item" onclick="switchAppTab('entrega')">
+              <i>📍</i>
+              <span>Entrega</span>
+            </button>
+            <button class="app-nav-item" onclick="switchAppTab('pedidos')">
+              <i>📦</i>
+              <span>Rastrear</span>
+            </button>
+          </nav>
+
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ======================================================================
+         3. TELA DO CANAL BALCÃO (Terminal Frente de Caixa / PDV do Atendente)
+         ====================================================================== -->
+    <div id="balcaoViewContainer" class="balcao-pos-wrapper" style="display: none;">
+      <div class="balcao-pos-frame">
+        
+        <!-- Cabeçalho do PDV de Balcão -->
+        <div class="balcao-pos-header">
+          <div class="balcao-operator-info">
+            <div>
+              <span style="font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.05em; color: #94a3b8;">Sistema de Caixa PDV</span>
+              <strong style="display: block; font-size: 1.05rem;">🏪 Balcão de Atendimento Presencial</strong>
+            </div>
+            <div style="border-left: 1px solid #334155; padding-left: 16px;">
+              <span style="font-size: 0.72rem; color: #94a3b8;">Operador Logado:</span>
+              <div style="font-weight: 700; color: #38bdf8;">Maria Silva (Atendente) • RU: 4840330</div>
+            </div>
+          </div>
+          <div>
+            <span class="channel-tag-badge tag-BALCAO">PERFIL: ATENDENTE (RBAC)</span>
+          </div>
+        </div>
+
+        <!-- Grade de Operação do Balcão: Produtos Rápidos vs Comanda e Troco -->
+        <div class="balcao-pos-grid">
+          
+          <!-- Lado Esquerdo: Catálogo Rápido do Caixa -->
+          <div class="balcao-catalog-side">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+              <h3 style="font-size: 0.95rem; font-weight: 800; color: var(--color-clay);">Teclas de Acesso Rápido (Lanches & Bebidas)</h3>
+              <span style="font-size: 0.75rem; color: var(--text-muted);">Clique para registrar no caixa</span>
+            </div>
+
+            <div id="balcaoQuickGrid" class="balcao-quick-keys-grid">
+              <!-- Inserido dinamicamente via JS -->
+            </div>
+          </div>
+
+          <!-- Lado Direito: Comanda do Balcão, Cliente e Calculadora de Troco em DINHEIRO -->
+          <div class="balcao-checkout-side">
+            
+            <!-- Identificação do Cliente no Balcão -->
+            <div class="balcao-client-box">
+              <div style="display: flex; justify-content: space-between; margin-bottom: 6px;">
+                <label style="font-size: 0.72rem; font-weight: 700; color: var(--text-muted);">Cliente Balcão / CPF</label>
+                <button type="button" style="background: none; border: none; color: #0284c7; font-size: 0.72rem; cursor: pointer; text-decoration: underline;" onclick="document.getElementById('balcaoClientInput').value='Consumidor Balcão (Não Identificado)'">
+                  Consumidor Não Identificado
+                </button>
+              </div>
+              <input type="text" id="balcaoClientInput" class="input-fidelity" value="Consumidor Balcão (Não Identificado)" style="padding: 6px 10px; font-size: 0.82rem;" />
+            </div>
+
+            <!-- Tabela de Itens da Comanda -->
+            <div style="flex: 1; overflow-y: auto; max-height: 200px; margin-bottom: 10px;">
+              <table class="balcao-ledger-table">
+                <thead>
+                  <tr>
+                    <th>Item</th>
+                    <th style="width: 40px; text-align: center;">Qtd</th>
+                    <th style="width: 70px; text-align: right;">Unit.</th>
+                    <th style="width: 70px; text-align: right;">Total</th>
+                    <th style="width: 30px;"></th>
+                  </tr>
+                </thead>
+                <tbody id="balcaoLedgerBody">
+                  <tr>
+                    <td colspan="5" style="text-align: center; color: var(--text-muted); padding: 20px;">Nenhum item lançado no caixa.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <!-- Resumo e Calculadora de Dinheiro/Troco -->
+            <div class="balcao-cash-calculator">
+              <div style="display: flex; justify-content: space-between; align-items: center; font-size: 1.15rem; font-weight: 900; margin-bottom: 8px;">
+                <span>Total a Cobrar:</span>
+                <span id="balcaoTotalVal" style="color: var(--color-terracotta);">R$ 0,00</span>
+              </div>
+
+              <!-- Meio de Pagamento Presencial -->
+              <div style="display: flex; gap: 6px; margin-bottom: 10px;">
+                <button class="channel-feat-pill active" id="btnBalcaoMetodoDinheiro" style="background: #0284c7; color: #fff; cursor: pointer;" onclick="setBalcaoPaymentMethod('DINHEIRO')">💵 Dinheiro</button>
+                <button class="channel-feat-pill" id="btnBalcaoMetodoCartao" style="cursor: pointer;" onclick="setBalcaoPaymentMethod('CARTAO_DEBITO')">💳 Cartão Máquina</button>
+                <button class="channel-feat-pill" id="btnBalcaoMetodoPix" style="cursor: pointer;" onclick="setBalcaoPaymentMethod('PIX')">📱 PIX Balcão</button>
+              </div>
+
+              <!-- Campo de Dinheiro Entregue & Cálculo Automático de Troco -->
+              <div id="balcaoCashSection">
+                <label style="font-size: 0.72rem; font-weight: 700; color: var(--text-muted); display: block; margin-bottom: 4px;">Valor em Dinheiro Recebido (R$)</label>
+                <input type="number" id="balcaoCashReceived" class="input-fidelity" placeholder="Ex: 50.00" step="0.50" oninput="calculateBalcaoChange()" style="font-size: 1.1rem; font-weight: 700;" />
+                <div class="balcao-troco-display">
+                  <span style="font-size: 0.75rem; text-transform: uppercase; display: block; font-weight: 700;">Troco a Devolver:</span>
+                  <span id="balcaoChangeDisplay">R$ 0,00</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Botão de Finalização no Caixa -->
+            <button id="btnBalcaoSubmitOrder" class="btn-balcao-finalize" onclick="handleBalcaoCheckout()">
+              🧾 Registrar Venda & Imprimir Comanda (canalPedido="BALCAO")
+            </button>
+
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ======================================================================
+         4. TELA DO CANAL PICKUP (Retirada Rápida Agendada)
+         ====================================================================== -->
+    <div id="pickupViewContainer" class="pickup-channel-wrapper" style="display: none;">
+      
+      <div class="pickup-flow-card">
+        <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border-light); padding-bottom: 14px; margin-bottom: 16px;">
+          <div>
+            <h3 style="font-size: 1.15rem; font-weight: 800; color: var(--color-clay);">📦 Raízes Express — Retirada na Loja (PICKUP)</h3>
+            <p style="font-size: 0.78rem; color: var(--text-muted);">Compre online, agende o horário e retire sem filas na baia expressa da unidade física</p>
+          </div>
+          <span class="channel-tag-badge tag-PICKUP">MODALIDADE: PICKUP</span>
+        </div>
+
+        <!-- Passo 1: Agendamento de Horário de Retirada -->
+        <div>
+          <label class="control-label" style="display: block; margin-bottom: 6px;">Selecione a Janela de Retirada Desejada</label>
+          <div class="pickup-slots-selector">
+            <button class="pickup-slot-btn active" data-slot="15min" onclick="selectPickupSlot(this, 'Em 15 minutos (Imediato)')">
+              ⚡ Retirar em 15 min
+              <small style="display: block; font-size: 0.7rem; opacity: 0.8;">Retirada Imediata</small>
+            </button>
+            <button class="pickup-slot-btn" data-slot="30min" onclick="selectPickupSlot(this, 'Em 30 minutos')">
+              🕒 Retirar em 30 min
+              <small style="display: block; font-size: 0.7rem; opacity: 0.8;">Preparo Programado</small>
+            </button>
+            <button class="pickup-slot-btn" data-slot="45min" onclick="selectPickupSlot(this, 'Em 45 minutos')">
+              📦 Retirar em 45 min
+              <small style="display: block; font-size: 0.7rem; opacity: 0.8;">Horário Almoço/Jantar</small>
+            </button>
+            <button class="pickup-slot-btn" data-slot="60min" onclick="selectPickupSlot(this, 'Em 1 hora')">
+              🚗 Retirar em 1 hora
+              <small style="display: block; font-size: 0.7rem; opacity: 0.8;">A caminho da loja</small>
+            </button>
+          </div>
+        </div>
+
+        <!-- Passo 2: Baia de Retirada Prioritária Atribuída -->
+        <div class="pickup-bay-badge">
+          <span>📍</span>
+          <div>
+            <span>Baia de Retirada Atribuída: <strong>Baia Express B-03 (Balcão Rápido Raízes)</strong></span>
+            <div style="font-size: 0.72rem; font-weight: 500;">Seu pedido será embalado e aguardará nesta estação prioritária</div>
+          </div>
+        </div>
+
+        <!-- Passo 3: Escolha de Itens para o Pickup -->
+        <div style="margin-top: 18px;">
+          <h4 style="font-size: 0.95rem; font-weight: 700; color: var(--color-clay); margin-bottom: 10px;">Selecione os Produtos para Retirada</h4>
+          <div id="pickupProductsGrid" class="totem-products-grid">
+            <!-- Inserido dinamicamente via JS -->
+          </div>
+        </div>
+
+        <!-- Resumo do Pedido de Retirada -->
+        <div style="background: #fafaf9; border: 1px solid var(--border-medium); border-radius: var(--radius-md); padding: 16px; margin-top: 20px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 14px;">
+          <div>
+            <div style="font-size: 0.85rem; color: var(--text-secondary);">Agendamento: <strong id="pickupSelectedTimeText">Em 15 minutos (Imediato)</strong></div>
+            <div style="font-size: 0.75rem; color: var(--text-muted);">Unidade: <span id="pickupUnitText">Recife - Matriz (PE)</span></div>
+          </div>
+          <div style="display: flex; align-items: center; gap: 16px;">
+            <div>
+              <span style="font-size: 0.72rem; color: var(--text-muted); display: block; text-align: right;">Total da Retirada:</span>
+              <strong id="pickupTotalDisplay" style="font-size: 1.25rem; color: var(--color-terracotta);">R$ 0,00</strong>
+            </div>
+            <button id="btnPickupSubmitOrder" class="btn-checkout-proceed" style="padding: 12px 24px;" onclick="handlePickupCheckout()">
+              Agendar & Pagar Retirada ➔
+            </button>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- ======================================================================
+         5. TELA DO CANAL WEB (Portal Web Delivery & E-commerce)
+         ====================================================================== -->
+    <div id="menuViewContainer">
+      
+      <!-- Navegação por Categorias Típicas -->
+      <nav class="categories-nav" aria-label="Categorias do Cardápio">
+        <button class="category-pill active" data-category="TODOS">🍽️ Todas as Delícias</button>
+        <button class="category-pill" data-category="CUSCUZ">🌽 Cuscuz no Vapor</button>
+        <button class="category-pill" data-category="TAPIOCAS">🥞 Tapiocas Rendadas</button>
+        <button class="category-pill" data-category="PRATOS">🥘 Pratos do Sertão</button>
+        <button class="category-pill" data-category="BEBIDAS">🥥 Bebidas Regionais</button>
+        <button class="category-pill" data-category="SOBREMESAS">🍌 Sobremesas Típicas</button>
+      </nav>
+
+      <!-- Cabeçalho da Seção com Estoque em Tempo Real da Unidade -->
+      <div class="section-header">
+        <div>
+          <h3 class="section-title">Cardápio do Portal Web Delivery</h3>
+          <span style="font-size: 0.78rem; color: var(--text-muted);">canalPedido: <strong>WEB</strong></span>
+        </div>
+        <span id="unitStockIndicator" class="unit-stock-indicator">
+          Exibindo estoque em tempo real de: <strong>Recife - Matriz (PE)</strong>
+        </span>
+      </div>
+
+      <!-- Grid Responsivo de Produtos -->
+      <div id="productsGrid" class="products-grid">
+        <!-- Renderizado dinamicamente via JS -->
+      </div>
+
+    </div>
+
+    <!-- ======================================================================
+         6. PAINEL DA COZINHA (KDS - KITCHEN DISPLAY SYSTEM)
+         Visualização dos Pedidos por Etapa da Máquina de Estados
+         ====================================================================== -->
+    <div id="kdsViewContainer" class="kds-container" style="display: none;">
+      
+      <div class="kds-header">
+        <div class="kds-title-group">
+          <h2>Painel de Produção da Cozinha (KDS)</h2>
+          <p>Monitoramento e transição controlada de estados dos pedidos convergidos de todos os canais</p>
+        </div>
+        <div class="kds-stats-pills">
+          <div class="kds-stat-pill stat-pill-preparo">
+            🍳 Em Preparo: <strong id="kdsCountPreparing">0</strong>
+          </div>
+          <div class="kds-stat-pill stat-pill-pronto">
+            ✅ Prontos p/ Retirada: <strong id="kdsCountReady">0</strong>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quadro KanBan KDS -->
+      <div class="kds-board">
+        
+        <!-- Coluna 1: Em Preparo (Cozinha Operando) -->
+        <div class="kds-column">
+          <div class="kds-column-header">
+            <span class="kds-column-title">🍳 Em Preparo (Fogão & Forno)</span>
+          </div>
+          <div id="kdsPreparingList" class="kds-orders-list">
+            <!-- Cards inseridos dinamicamente -->
+          </div>
+        </div>
+
+        <!-- Coluna 2: Pronto para Retirada (Balcão / Garçom / Pickup) -->
+        <div class="kds-column">
+          <div class="kds-column-header">
+            <span class="kds-column-title">🛎️ Pronto (Aguardando Retirada)</span>
+          </div>
+          <div id="kdsReadyList" class="kds-orders-list">
+            <!-- Cards inseridos dinamicamente -->
+          </div>
+        </div>
+
+        <!-- Coluna 3: Entregues Recentemente -->
+        <div class="kds-column">
+          <div class="kds-column-header">
+            <span class="kds-column-title">📦 Concluídos / Entregues</span>
+          </div>
+          <div id="kdsDeliveredList" class="kds-orders-list">
+            <!-- Cards inseridos dinamicamente -->
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- ======================================================================
+         7. PAINEL MONITOR MULTICANAL & CONSOLE DE API REST
+         Auditoria, Métricas e Inspecionador de Requisições HTTP
+         ====================================================================== -->
+    <div id="monitorViewContainer" class="monitor-wrapper" style="display: none;">
+      
+      <div style="margin-bottom: 20px;">
+        <h2 style="font-size: 1.4rem; font-weight: 900; color: var(--color-clay);">📊 Painel Multicanal & Console de Integração REST</h2>
+        <p style="font-size: 0.82rem; color: var(--text-muted);">
+          Monitoramento em tempo real do fluxo de pedidos por canal (`canalPedido`), validações de estoque por unidade e respostas da API REST.
+        </p>
+      </div>
+
+      <!-- Métricas por Canal -->
+      <div class="monitor-metrics-grid">
+        <div class="monitor-metric-card">
+          <div class="monitor-metric-icon tag-TOTEM">🖥️</div>
+          <div>
+            <div id="metricCountTotem" class="monitor-metric-val">0</div>
+            <div class="monitor-metric-label">Canal TOTEM</div>
+          </div>
+        </div>
+        <div class="monitor-metric-card">
+          <div class="monitor-metric-icon tag-APP">📱</div>
+          <div>
+            <div id="metricCountApp" class="monitor-metric-val">0</div>
+            <div class="monitor-metric-label">Canal APP Mobile</div>
+          </div>
+        </div>
+        <div class="monitor-metric-card">
+          <div class="monitor-metric-icon tag-BALCAO">🏪</div>
+          <div>
+            <div id="metricCountBalcao" class="monitor-metric-val">0</div>
+            <div class="monitor-metric-label">Canal BALCÃO (PDV)</div>
+          </div>
+        </div>
+        <div class="monitor-metric-card">
+          <div class="monitor-metric-icon tag-PICKUP">📦</div>
+          <div>
+            <div id="metricCountPickup" class="monitor-metric-val">0</div>
+            <div class="monitor-metric-label">Canal PICKUP Agendado</div>
+          </div>
+        </div>
+        <div class="monitor-metric-card">
+          <div class="monitor-metric-icon tag-WEB">🌐</div>
+          <div>
+            <div id="metricCountWeb" class="monitor-metric-val">0</div>
+            <div class="monitor-metric-label">Canal WEB Delivery</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Ações de Teste Rápido de Multicanalidade -->
+      <div style="background: #ffffff; padding: 16px; border-radius: var(--radius-md); border: 1px solid var(--border-medium); margin-bottom: 20px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;">
+        <div>
+          <strong style="font-size: 0.9rem;">Disparador Rápido de Testes de Carga de Canais</strong>
+          <p style="font-size: 0.75rem; color: var(--text-muted);">Gera pedidos automatizados para demonstrar a criação e conciliação atômica em cada canal</p>
+        </div>
+        <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+          <button class="channel-feat-pill tag-TOTEM" style="cursor: pointer; font-weight: 700;" onclick="quickSimulateOrder('TOTEM')">+ Testar TOTEM</button>
+          <button class="channel-feat-pill tag-APP" style="cursor: pointer; font-weight: 700;" onclick="quickSimulateOrder('APP')">+ Testar APP</button>
+          <button class="channel-feat-pill tag-BALCAO" style="cursor: pointer; font-weight: 700;" onclick="quickSimulateOrder('BALCAO')">+ Testar BALCÃO</button>
+          <button class="channel-feat-pill tag-PICKUP" style="cursor: pointer; font-weight: 700;" onclick="quickSimulateOrder('PICKUP')">+ Testar PICKUP</button>
+          <button class="channel-feat-pill tag-WEB" style="cursor: pointer; font-weight: 700;" onclick="quickSimulateOrder('WEB')">+ Testar WEB</button>
+        </div>
+      </div>
+
+      <!-- Console de Inspecionador de Requisições REST -->
+      <div class="api-console-panel">
+        <div class="api-console-header">
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <span style="font-size: 1rem;">⚡</span>
+            <strong>Console de Auditoria & Tráfego da API REST (Porta 3000 /api/v1)</strong>
+          </div>
+          <button style="background: #334155; border: none; color: #94a3b8; padding: 4px 10px; border-radius: 4px; font-size: 0.72rem; cursor: pointer;" onclick="clearApiLogs()">Limpar Console</button>
+        </div>
+        <div id="apiConsoleBody" class="api-console-body">
+          <div class="api-log-entry log-post">
+            <div class="api-log-meta">
+              <span>POST /api/v1/auth/login</span>
+              <span>HTTP 200 OK</span>
+              <span>Autenticação JWT Inicial</span>
+            </div>
+            <div class="api-log-json">{"status": "CONECTADO", "canalPadrao": "TOTEM", "versaoApi": "1.0.0"}</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- ========================================================================
+       DRAWER LATERAL DO CARRINHO (CESTA DE PEDIDOS WEB)
+       ======================================================================== -->
+  <div id="cartDrawerOverlay" class="cart-drawer-overlay">
+    <div class="cart-drawer">
+      
+      <div class="cart-drawer-header">
+        <h3 class="cart-drawer-title">
+          <span>🛒</span> Sua Cesta de Sabores
+        </h3>
+        <button id="btnCloseCart" class="btn-close-drawer" aria-label="Fechar Carrinho">&times;</button>
+      </div>
+
+      <!-- Itens Adicionados -->
+      <div id="cartItemsContainer" class="cart-items-container">
+        <!-- Itens inseridos via JS -->
+      </div>
+
+      <!-- Seção LGPD & Programa de Fidelidade Raízes -->
+      <div class="cart-fidelity-section">
+        <div class="fidelity-box">
+          <div class="fidelity-header">
+            <span style="font-size: 1.2rem;">⭐</span>
+            <div>
+              <span class="fidelity-title">Programa Raízes Fidelidade</span>
+              <p class="fidelity-rule-tag">Ganhe 1 ponto a cada R$ 10,00 consumidos</p>
+            </div>
+          </div>
+          
+          <div class="fidelity-inputs">
+            <input type="text" id="fidelityName" class="input-fidelity" placeholder="Seu nome completo (opcional)" />
+            <input type="text" id="fidelityCpf" class="input-fidelity" placeholder="Seu CPF (para resgate de pontos)" />
+            
+            <!-- Checkbox Mandatório de Consentimento LGPD (Art. 7º, I da Lei 13.709/2018) -->
+            <label class="lgpd-checkbox-label">
+              <input type="checkbox" id="fidelityOptIn" />
+              <span>
+                Concordo expressamente com o tratamento do meu CPF para acúmulo de pontos no programa de fidelidade conforme a <strong>LGPD</strong>.
+              </span>
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <!-- Resumo Financeiro e Ação de Finalização -->
+      <div class="cart-drawer-footer">
+        <div class="cart-summary-line">
+          <span>Subtotal:</span>
+          <span id="cartSubtotal">R$ 0,00</span>
+        </div>
+        <div class="cart-summary-line">
+          <span>Pontos de Fidelidade Estimados:</span>
+          <span id="cartFidelityPoints" style="color: var(--color-sun-gold); font-weight: 700;">0 pts</span>
+        </div>
+        <div class="cart-summary-line total-line">
+          <span>Total do Pedido:</span>
+          <span id="cartTotal" class="total-val">R$ 0,00</span>
+        </div>
+
+        <button id="btnProceedCheckout" class="btn-checkout-proceed">
+          Avançar para Pagamento ➔
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       MODAL DE CHECKOUT & SIMULADOR MOCK DE PAGAMENTO (FLUXO A)
+       Demonstração Prática do Gateway Desacoplado Exigido no Roteiro
+       ======================================================================== -->
+  <div id="paymentModalOverlay" class="modal-overlay">
+    <div class="modal-card">
+      
+      <div class="modal-header">
+        <h3 class="modal-title">Finalizar Pedido & Pagamento</h3>
+        <button id="btnCloseModal" class="btn-close-drawer">&times;</button>
+      </div>
+
+      <div class="modal-body">
+        
+        <!-- Resumo da Transação -->
+        <div class="order-overview-box">
+          <div>
+            <span id="modalOrderChannel" class="order-badge-channel">Canal: TOTEM</span>
+            <p id="modalOrderItemsCount" style="font-size: 0.8rem; color: var(--text-muted); margin-top: 4px;">2 itens selecionados</p>
+          </div>
+          <div>
+            <span class="control-label" style="display: block; text-align: right;">Total a Pagar</span>
+            <span id="modalOrderTotal" class="order-overview-total">R$ 0,00</span>
+          </div>
+        </div>
+
+        <!-- Observações de Preparo -->
+        <div class="control-group">
+          <label for="orderObservations" class="control-label">Observações para a Cozinha</label>
+          <input 
+            type="text" 
+            id="orderObservations" 
+            class="input-fidelity" 
+            placeholder="Ex.: Sem cebola, queijo bem tostado, pimenta à parte..."
+          />
+        </div>
+
+        <!-- Meios de Pagamento Disponíveis -->
+        <div>
+          <span class="control-label" style="display: block; margin-bottom: 8px;">Selecione o Meio de Pagamento</span>
+          <div class="payment-methods-grid">
+            <div class="payment-method-card selected" data-method="PIX">
+              <div class="payment-icon">📱</div>
+              <div class="payment-name">PIX Instantâneo</div>
+            </div>
+            <div class="payment-method-card" data-method="CARTAO_CREDITO">
+              <div class="payment-icon">💳</div>
+              <div class="payment-name">Cartão Crédito</div>
+            </div>
+            <div class="payment-method-card" data-method="DINHEIRO">
+              <div class="payment-icon">💵</div>
+              <div class="payment-name">Dinheiro / Balcão</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Painel de Controle do Mock (Exigência UNINTER - Critério 1 e 3) -->
+        <div class="mock-control-panel">
+          <div class="mock-panel-title">
+            <span>⚙️</span> Simulador de Gateway Mock (Avaliação Prática)
+          </div>
+          <div class="mock-options-group">
+            <label class="mock-option-label">
+              <input type="radio" name="mockScenario" value="APROVADO" checked />
+              <span>🟢 Aprovado com Sucesso</span>
+              <span class="mock-desc">(Gera pedido e envia para a Cozinha)</span>
+            </label>
+            <label class="mock-option-label">
+              <input type="radio" name="mockScenario" value="RECUSADO" />
+              <span>🔴 Recusado pelo Banco / Cartão</span>
+              <span class="mock-desc">(Mantém em Aguardando Pagamento)</span>
+            </label>
+            <label class="mock-option-label">
+              <input type="radio" name="mockScenario" value="TIMEOUT" />
+              <span>🟡 Falha de Comunicação / Timeout</span>
+              <span class="mock-desc">(Simula erro HTTP 503 do gateway)</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Botão Disparador do Pagamento Mock -->
+        <button id="btnSubmitMockPayment" class="btn-submit-payment">
+          ⚡ Processar Pagamento (Mock)
+        </button>
+
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       MODAL: COMPROVANTE & SENHA DO TOTEM
+       ======================================================================== -->
+  <div id="totemTicketModalOverlay" class="modal-overlay">
+    <div class="modal-card" style="max-width: 440px;">
+      <div class="modal-header">
+        <h3 class="modal-title">🎫 Comprovante do Totem</h3>
+        <button class="btn-close-drawer" onclick="document.getElementById('totemTicketModalOverlay').classList.remove('open')">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="totem-ticket-card">
+          <div style="font-weight: 800; font-size: 1.1rem; color: var(--color-clay);">REDE RAÍZES DO NORDESTE</div>
+          <div style="font-size: 0.75rem; color: var(--text-muted);" id="ticketUnitName">Recife - Matriz (PE)</div>
+          <hr style="border: none; border-top: 1px dashed #cbd5e1; margin: 12px 0;" />
+          <div style="font-size: 0.8rem; text-transform: uppercase; font-weight: 700;">SUA SENHA DE RETIRADA:</div>
+          <div id="ticketPasswordNumber" class="totem-ticket-order-id">#T-104</div>
+          <div style="font-size: 0.8rem; margin-bottom: 8px;">Aguarde sua senha ser chamada no painel da loja.</div>
+          <div id="ticketItemsSummary" style="font-size: 0.75rem; text-align: left; background: #fafaf9; padding: 10px; border-radius: 4px; margin: 10px 0;"></div>
+          <div style="display: flex; justify-content: space-between; font-weight: 800; font-size: 0.95rem; margin-top: 8px;">
+            <span>TOTAL PAGO:</span>
+            <span id="ticketTotalPaid">R$ 0,00</span>
+          </div>
+          <div style="font-size: 0.7rem; color: #64748b; margin-top: 12px;">Transação Mock aprovada • canalPedido="TOTEM"</div>
+        </div>
+        <button class="totem-btn-finish" style="margin-top: 16px;" onclick="closeTotemTicketModal()">
+          ✓ Concluir e Novo Pedido no Totem
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       MODAL: CUPOM TÉRMICO DO BALCÃO (PDV)
+       ======================================================================== -->
+  <div id="balcaoReceiptModalOverlay" class="modal-overlay">
+    <div class="modal-card" style="max-width: 440px;">
+      <div class="modal-header">
+        <h3 class="modal-title">🧾 Cupom do Caixa (Balcão)</h3>
+        <button class="btn-close-drawer" onclick="document.getElementById('balcaoReceiptModalOverlay').classList.remove('open')">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="totem-ticket-card" style="text-align: left;">
+          <div style="text-align: center; font-weight: 800; font-size: 1.1rem; color: var(--color-clay);">RAÍZES DO NORDESTE - PDV</div>
+          <div style="text-align: center; font-size: 0.75rem; color: var(--text-muted);" id="balcaoReceiptHeader">Caixa 01 • Maria Silva</div>
+          <hr style="border: none; border-top: 1px dashed #cbd5e1; margin: 10px 0;" />
+          <div style="font-size: 0.78rem;" id="balcaoReceiptMeta">Pedido: #105 | Canal: BALCAO</div>
+          <div style="font-size: 0.78rem;" id="balcaoReceiptClient">Cliente: Consumidor</div>
+          <hr style="border: none; border-top: 1px dashed #cbd5e1; margin: 10px 0;" />
+          <div id="balcaoReceiptItems" style="font-size: 0.75rem; line-height: 1.6;"></div>
+          <hr style="border: none; border-top: 1px dashed #cbd5e1; margin: 10px 0;" />
+          <div style="display: flex; justify-content: space-between; font-weight: 700; font-size: 0.85rem;">
+            <span>TOTAL:</span>
+            <span id="balcaoReceiptTotal">R$ 0,00</span>
+          </div>
+          <div style="display: flex; justify-content: space-between; font-size: 0.78rem;">
+            <span>PAGO EM DINHEIRO:</span>
+            <span id="balcaoReceiptPaid">R$ 0,00</span>
+          </div>
+          <div style="display: flex; justify-content: space-between; font-weight: 800; font-size: 0.85rem; color: #047857;">
+            <span>TROCO DEVOLVIDO:</span>
+            <span id="balcaoReceiptChange">R$ 0,00</span>
+          </div>
+          <div style="text-align: center; margin-top: 14px; font-size: 0.7rem; color: #64748b;">
+            Enviado à Cozinha KDS • Conforme RBAC ATENDENTE
+          </div>
+        </div>
+        <button class="btn-balcao-finalize" style="margin-top: 16px; width: 100%;" onclick="closeBalcaoReceiptModal()">
+          ✓ Nova Venda no Balcão
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       MODAL: VOUCHER DE RETIRADA AGENDADA (PICKUP)
+       ======================================================================== -->
+  <div id="pickupVoucherModalOverlay" class="modal-overlay">
+    <div class="modal-card" style="max-width: 440px;">
+      <div class="modal-header">
+        <h3 class="modal-title">📦 Voucher de Retirada Agendada</h3>
+        <button class="btn-close-drawer" onclick="document.getElementById('pickupVoucherModalOverlay').classList.remove('open')">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="pickup-voucher-box">
+          <span style="font-size: 2.2rem;">🚗</span>
+          <h4 style="font-weight: 800; font-size: 1.1rem; color: var(--color-clay); margin: 6px 0;">Retirada Agendada Confirmada!</h4>
+          <p style="font-size: 0.78rem; color: var(--text-muted);">Apresente este código na estação expressa da filial</p>
+          
+          <div class="pickup-pin-large" id="pickupVoucherPin">8492</div>
+          
+          <div style="background: #ffffff; padding: 12px; border-radius: var(--radius-md); font-size: 0.8rem; text-align: left; margin: 12px 0;">
+            <div><strong>Unidade:</strong> <span id="voucherUnitName">Recife - Matriz</span></div>
+            <div><strong>Horário Previsto:</strong> <span id="voucherTimeText">Em 15 minutos</span></div>
+            <div><strong>Estação de Retirada:</strong> <span style="color: #c2410c; font-weight: 700;">Baia Express B-03</span></div>
+            <div><strong>Nº do Pedido:</strong> <span id="voucherOrderId">#106</span></div>
+          </div>
+
+          <div style="font-size: 0.7rem; color: #64748b;">
+            Status: Em separação prioritária na cozinha • canalPedido="PICKUP"
+          </div>
+        </div>
+        <button class="btn-checkout-proceed" style="width: 100%; margin-top: 10px;" onclick="closePickupVoucherModal()">
+          ✓ Entendido, Ver na Cozinha KDS
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       MODAL DE AUTENTICAÇÃO JWT & PERFIS DE ACESSO (RBAC)
+       Demonstração Prática de Login para os Usuários Pré-Cadastrados no README
+       ======================================================================== -->
+  <div id="authModalOverlay" class="modal-overlay">
+    <div class="modal-card" style="max-width: 500px;">
+      
+      <div class="modal-header">
+        <h3 class="modal-title">🔑 Autenticação & Perfis de Acesso (RBAC)</h3>
+        <button class="btn-close-drawer" onclick="closeAuthModal()">&times;</button>
+      </div>
+
+      <div class="modal-body">
+        
+        <!-- Abas do Modal: Login vs Registro -->
+        <div style="display: flex; gap: 8px; border-bottom: 2px solid var(--border-light); padding-bottom: 8px; margin-bottom: 14px;">
+          <button id="tabAuthLoginBtn" class="channel-feat-pill active" style="cursor: pointer; font-weight: 700; background: var(--color-clay); color: #fff;" onclick="switchAuthModalTab('login')">
+            Identificação / Login (JWT)
+          </button>
+          <button id="tabAuthRegisterBtn" class="channel-feat-pill" style="cursor: pointer; font-weight: 700;" onclick="switchAuthModalTab('register')">
+            Novo Cadastro (com LGPD)
+          </button>
+        </div>
+
+        <!-- Conteúdo 1: Login & Usuários Pré-Cadastrados -->
+        <div id="authModalLoginContent">
+          <label class="control-label" style="display: block; margin-bottom: 6px;">Escolha um Usuário Pré-Cadastrado para Testar:</label>
+          <div class="auth-quick-users-grid">
+            
+            <div class="auth-quick-user-card" onclick="selectQuickUser('cliente')">
+              <div class="auth-quick-user-title">
+                <span>👤 Lucas Gabriel</span>
+                <span class="auth-role-tag CLIENTE">CLIENTE</span>
+              </div>
+              <div class="auth-quick-user-email">cliente@exemplo.com</div>
+              <div style="font-size: 0.68rem; color: #16a34a; margin-top: 2px;">• Permissão: Pedidos & Fidelidade</div>
+            </div>
+
+            <div class="auth-quick-user-card" onclick="selectQuickUser('atendente')">
+              <div class="auth-quick-user-title">
+                <span>🏪 Maria Silva</span>
+                <span class="auth-role-tag ATENDENTE">ATENDENTE</span>
+              </div>
+              <div class="auth-quick-user-email">atendente@raizesdonordeste...</div>
+              <div style="font-size: 0.68rem; color: #2563eb; margin-top: 2px;">• Permissão: Caixa Balcão / PDV</div>
+            </div>
+
+            <div class="auth-quick-user-card" onclick="selectQuickUser('cozinha')">
+              <div class="auth-quick-user-title">
+                <span>👨‍🍳 Severino José</span>
+                <span class="auth-role-tag COZINHA">COZINHA</span>
+              </div>
+              <div class="auth-quick-user-email">cozinha@raizesdonordeste...</div>
+              <div style="font-size: 0.68rem; color: #d97706; margin-top: 2px;">• Permissão: KDS / Status Pronto</div>
+            </div>
+
+            <div class="auth-quick-user-card" onclick="selectQuickUser('admin')">
+              <div class="auth-quick-user-title">
+                <span>⚙️ Administrador</span>
+                <span class="auth-role-tag ADMIN">ADMIN</span>
+              </div>
+              <div class="auth-quick-user-email">admin@raizesdonordeste...</div>
+              <div style="font-size: 0.68rem; color: #dc2626; margin-top: 2px;">• Permissão: Auditoria & Acesso Total</div>
+            </div>
+
+          </div>
+
+          <!-- Formulário de Login Manual -->
+          <div style="background: var(--bg-subtle); padding: 14px; border-radius: var(--radius-md); border: 1px solid var(--border-medium); margin-bottom: 12px;">
+            <div class="control-group" style="margin-bottom: 8px;">
+              <label for="authLoginEmail" class="control-label">E-mail de Acesso</label>
+              <input type="email" id="authLoginEmail" class="input-fidelity" value="cliente@exemplo.com" placeholder="seu.email@exemplo.com" />
+            </div>
+            <div class="control-group" style="margin-bottom: 12px;">
+              <label for="authLoginPassword" class="control-label">Senha de Acesso</label>
+              <input type="password" id="authLoginPassword" class="input-fidelity" value="Senha@123" placeholder="Senha cadastrada" />
+            </div>
+            <button id="btnSubmitLogin" class="btn-checkout-proceed" style="width: 100%; padding: 10px;" onclick="handleAuthLogin()">
+              ⚡ Autenticar e Obter Token JWT (POST /auth/login)
+            </button>
+          </div>
+
+          <!-- Caixa de Status do Usuário Conectado & Token JWT -->
+          <div id="authLoggedInfoBox" style="background: #ffffff; border: 1px solid var(--border-medium); border-radius: var(--radius-md); padding: 12px;">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <div>
+                <span style="font-size: 0.72rem; color: var(--text-muted);">Usuário Atualmente Logado:</span>
+                <strong id="authCurrentUserNameDisplay" style="display: block; font-size: 0.95rem; color: var(--color-clay);">Lucas Gabriel (Cliente)</strong>
+              </div>
+              <span id="authCurrentUserRoleBadge" class="auth-role-tag CLIENTE">CLIENTE</span>
+            </div>
+            <div style="margin-top: 8px; font-size: 0.72rem; color: var(--text-muted);">Token Bearer JWT Ativo:</div>
+            <div id="authTokenDisplayBox" class="auth-token-box">Não autenticado</div>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 6px;">
+              <span id="authExpiresDisplay" style="font-size: 0.7rem; color: var(--text-muted);">Validade: 8 horas (conforme RN02)</span>
+              <button style="background: none; border: none; color: #dc2626; font-size: 0.75rem; font-weight: 700; cursor: pointer; text-decoration: underline;" onclick="handleAuthLogout()">
+                Desconectar (Logout)
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Conteúdo 2: Cadastro de Novo Usuário (com LGPD) -->
+        <div id="authModalRegisterContent" style="display: none;">
+          <div style="background: var(--bg-subtle); padding: 14px; border-radius: var(--radius-md); border: 1px solid var(--border-medium);">
+            <div class="control-group" style="margin-bottom: 8px;">
+              <label for="regNome" class="control-label">Nome Completo</label>
+              <input type="text" id="regNome" class="input-fidelity" placeholder="Ex.: Juliana Albuquerque" />
+            </div>
+            <div class="control-group" style="margin-bottom: 8px;">
+              <label for="regEmail" class="control-label">E-mail Único</label>
+              <input type="email" id="regEmail" class="input-fidelity" placeholder="Ex.: juliana@gmail.com" />
+            </div>
+            <div class="control-group" style="margin-bottom: 8px;">
+              <label for="regSenha" class="control-label">Senha (mínimo 6 caracteres)</label>
+              <input type="password" id="regSenha" class="input-fidelity" placeholder="Digite uma senha forte" />
+            </div>
+            <div class="control-group" style="margin-bottom: 8px;">
+              <label for="regTelefone" class="control-label">Telefone / WhatsApp</label>
+              <input type="text" id="regTelefone" class="input-fidelity" placeholder="(81) 98888-7777" />
+            </div>
+            <div class="control-group" style="margin-bottom: 12px;">
+              <label for="regPerfil" class="control-label">Perfil de Acesso (Role)</label>
+              <select id="regPerfil" class="select-custom" style="width: 100%;">
+                <option value="CLIENTE" selected>CLIENTE (Realiza Pedidos & Consulta Fidelidade)</option>
+                <option value="ATENDENTE">ATENDENTE (Opera Caixa Balcão / Retiradas)</option>
+                <option value="COZINHA">COZINHA (Opera Painel KDS)</option>
+                <option value="ADMIN">ADMIN (Administrador com Acesso Total)</option>
+              </select>
+            </div>
+
+            <!-- Checkbox LGPD Mandatório -->
+            <label class="lgpd-checkbox-label" style="margin-bottom: 14px;">
+              <input type="checkbox" id="regConsentimentoLGPD" checked />
+              <span>
+                Concordo com o tratamento dos meus dados cadastrais e aceite dos termos da <strong>LGPD (Lei nº 13.709/2018)</strong>.
+              </span>
+            </label>
+
+            <button class="btn-checkout-proceed" style="width: 100%; padding: 10px;" onclick="handleAuthRegister()">
+              📝 Cadastrar Usuário no Banco (POST /auth/register)
+            </button>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       RODAPÉ DO SISTEMA
+       ======================================================================== -->
+  <footer class="system-footer">
+    <div class="footer-content">
+      <div class="footer-left">
+        <strong>Rede de Lanchonetes Raízes do Nordeste</strong> &copy; 2026. Todos os direitos reservados.
+        <br />
+        <span style="font-size: 0.72rem; color: #78716c;">
+          Cardápio mestre centralizado & estoques descentralizados por franquia. Conformidade LGPD & RBAC.
+        </span>
+      </div>
+      <div class="footer-academic-badge">
+        Projeto Integrador UNINTER — Aluno: Lucas Gabriel (RU: 4840330)
+      </div>
+    </div>
+  </footer>
+
+  <!-- Script da Aplicação Resiliente & Multicanal -->
+  <script src="js/app.js?v=2.2"></script>
+</body>
+</html>
