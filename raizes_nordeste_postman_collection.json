@@ -1,0 +1,234 @@
+{
+  "info": {
+    "_postman_id": "a9876543-210b-4fed-cba9-1234567890ab",
+    "name": "Raízes do Nordeste - API Oficial (UNINTER)",
+    "description": "Coleção de Testes Oficiais da API RESTful 'Raízes do Nordeste' - Projeto Multidisciplinar Back-End UNINTER.\nEstudante: Lucas Gabriel | RU: 4840330 | Polo: Formosa-GO\n\nContém os 10 cenários de testes estruturados (positivos e negativos), cobrindo multicanalidade (canalPedido), estoque, mock de pagamento, auditoria e LGPD.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    { "key": "baseUrl", "value": "http://localhost:3000/api/v1", "type": "string" },
+    { "key": "tokenCliente", "value": "", "type": "string" },
+    { "key": "tokenAdmin", "value": "", "type": "string" },
+    { "key": "pedidoId", "value": "1", "type": "string" }
+  ],
+  "item": [
+    {
+      "name": "1. Autenticação (Auth)",
+      "item": [
+        {
+          "name": "[T01 - Positivo] Login com Credenciais Válidas",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"cliente@exemplo.com\",\n  \"senha\": \"Senha@123\"\n}"
+            },
+            "url": { "raw": "{{baseUrl}}/auth/login", "host": ["{{baseUrl}}"], "path": ["auth", "login"] }
+          }
+        },
+        {
+          "name": "Registro de Novo Usuário (com LGPD)",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nome\": \"Lucas Gabriel\",\n  \"email\": \"lucas.teste@uninter.com\",\n  \"senha\": \"Senha@123\",\n  \"telefone\": \"(61) 99999-8888\",\n  \"perfil\": \"CLIENTE\",\n  \"consentimentoLGPD\": true\n}"
+            },
+            "url": { "raw": "{{baseUrl}}/auth/register", "host": ["{{baseUrl}}"], "path": ["auth", "register"] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "2. Unidades e Cardápio",
+      "item": [
+        {
+          "name": "Listar Unidades da Rede",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "{{baseUrl}}/unidades", "host": ["{{baseUrl}}"], "path": ["unidades"] }
+          }
+        },
+        {
+          "name": "[T05 - Positivo] Consultar Cardápio com Estoque por Unidade",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "{{baseUrl}}/unidades/1/produtos", "host": ["{{baseUrl}}"], "path": ["unidades", "1", "produtos"] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "3. Pedidos & Multicanalidade",
+      "item": [
+        {
+          "name": "[T06 - Positivo] Criar Pedido com canalPedido TOTEM",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{tokenCliente}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"unidadeId\": 1,\n  \"canalPedido\": \"TOTEM\",\n  \"itens\": [\n    { \"produtoId\": 1, \"quantidade\": 1 },\n    { \"produtoId\": 6, \"quantidade\": 1 }\n  ],\n  \"observacoes\": \"Sem cebola no cuscuz\"\n}"
+            },
+            "url": { "raw": "{{baseUrl}}/pedidos", "host": ["{{baseUrl}}"], "path": ["pedidos"] }
+          }
+        },
+        {
+          "name": "Listar Pedidos com Filtro por canalPedido e Status",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Authorization", "value": "Bearer {{tokenCliente}}" }],
+            "url": {
+              "raw": "{{baseUrl}}/pedidos?canalPedido=TOTEM&status=AGUARDANDO_PAGAMENTO&page=1&limit=10",
+              "host": ["{{baseUrl}}"],
+              "path": ["pedidos"],
+              "query": [
+                { "key": "canalPedido", "value": "TOTEM" },
+                { "key": "status", "value": "AGUARDANDO_PAGAMENTO" },
+                { "key": "page", "value": "1" },
+                { "key": "limit", "value": "10" }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Consultar Detalhes do Pedido por ID",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "{{baseUrl}}/pedidos/{{pedidoId}}", "host": ["{{baseUrl}}"], "path": ["pedidos", "{{pedidoId}}"] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "4. Pagamento Mock (Fluxo A)",
+      "item": [
+        {
+          "name": "[T08 - Negativo] Pagamento Mock Recusado (Cartão sem Limite)",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{tokenCliente}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"formaPagamento\": \"CARTAO_CREDITO\",\n  \"statusSimulado\": \"RECUSADO\"\n}"
+            },
+            "url": { "raw": "{{baseUrl}}/pedidos/{{pedidoId}}/pagamento", "host": ["{{baseUrl}}"], "path": ["pedidos", "{{pedidoId}}", "pagamento"] }
+          }
+        },
+        {
+          "name": "[T09 - Positivo] Pagamento Mock Aprovado (Transição para EM_PREPARO)",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{tokenCliente}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"formaPagamento\": \"PIX\",\n  \"statusSimulado\": \"APROVADO\"\n}"
+            },
+            "url": { "raw": "{{baseUrl}}/pedidos/{{pedidoId}}/pagamento", "host": ["{{baseUrl}}"], "path": ["pedidos", "{{pedidoId}}", "pagamento"] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "5. Cozinha KDS & Status",
+      "item": [
+        {
+          "name": "Atualizar Status do Pedido para PRONTO (Cozinha)",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{tokenAdmin}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"novoStatus\": \"PRONTO\"\n}"
+            },
+            "url": { "raw": "{{baseUrl}}/pedidos/{{pedidoId}}/status", "host": ["{{baseUrl}}"], "path": ["pedidos", "{{pedidoId}}", "status"] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "6. Cenários de Erro e Regras de Negócio",
+      "item": [
+        {
+          "name": "[T02 - Negativo] Acesso a Recurso Protegido sem Token (401)",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "{{baseUrl}}/pedidos", "host": ["{{baseUrl}}"], "path": ["pedidos"] }
+          }
+        },
+        {
+          "name": "[T03 - Negativo] Acesso com Perfil Desautorizado CLIENTE na Cozinha (403)",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{tokenCliente}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"novoStatus\": \"PRONTO\"\n}"
+            },
+            "url": { "raw": "{{baseUrl}}/pedidos/1/status", "host": ["{{baseUrl}}"], "path": ["pedidos", "1", "status"] }
+          }
+        },
+        {
+          "name": "[T04 - Negativo] Criação de Pedido sem campo obrigatório canalPedido (422)",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{tokenCliente}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"unidadeId\": 1,\n  \"itens\": [{ \"produtoId\": 1, \"quantidade\": 1 }]\n}"
+            },
+            "url": { "raw": "{{baseUrl}}/pedidos", "host": ["{{baseUrl}}"], "path": ["pedidos"] }
+          }
+        },
+        {
+          "name": "[T07 - Negativo] Pedido com Quantidade Superior ao Estoque da Loja (409)",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{tokenCliente}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"unidadeId\": 1,\n  \"canalPedido\": \"APP\",\n  \"itens\": [{ \"produtoId\": 1, \"quantidade\": 9999 }]\n}"
+            },
+            "url": { "raw": "{{baseUrl}}/pedidos", "host": ["{{baseUrl}}"], "path": ["pedidos"] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "7. Auditoria & Rastreabilidade",
+      "item": [
+        {
+          "name": "[T10 - Positivo] Consultar Trilha de Auditoria (Apenas ADMIN)",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Authorization", "value": "Bearer {{tokenAdmin}}" }],
+            "url": { "raw": "{{baseUrl}}/auditoria", "host": ["{{baseUrl}}"], "path": ["auditoria"] }
+          }
+        }
+      ]
+    }
+  ]
+}
