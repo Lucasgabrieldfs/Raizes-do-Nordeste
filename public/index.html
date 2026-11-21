@@ -10,8 +10,32 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;700;800;900&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
   
+  <!-- Metadados de Compartilhamento & Preview de Link (Open Graph / WhatsApp / Telegram / LinkedIn / Twitter) -->
+  <meta name="description" content="Rede de Alimentação Rápida Raízes do Nordeste — API RESTful de Back-End com multicanalidade (App, Totem, Balcão, Pickup, Web), KDS da Cozinha e controle atômico de estoque." />
+  
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://lucasgabrieldfs.github.io/Raizes-do-Nordeste/" />
+  <meta property="og:title" content="Raízes do Nordeste ☀️ | Cardápio & Multicanalidade" />
+  <meta property="og:description" content="Experimente o sabor autêntico do sertão: cuscuz no vapor, tapiocas rendadas e baião de dois com autoatendimento multicanal, KDS da Cozinha e API integrada." />
+  <meta property="og:image" content="https://lucasgabrieldfs.github.io/Raizes-do-Nordeste/images/og-preview.jpg" />
+  <meta property="og:image:secure_url" content="https://lucasgabrieldfs.github.io/Raizes-do-Nordeste/images/og-preview.jpg" />
+  <meta property="og:image:type" content="image/jpeg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Raízes do Nordeste - Sabor Autêntico e Multicanalidade" />
+  <meta property="og:locale" content="pt_BR" />
+  <meta property="og:site_name" content="Raízes do Nordeste" />
+
+  <!-- Twitter / X Cards -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:url" content="https://lucasgabrieldfs.github.io/Raizes-do-Nordeste/" />
+  <meta name="twitter:title" content="Raízes do Nordeste ☀️ | Cardápio & Multicanalidade" />
+  <meta name="twitter:description" content="Experimente o sabor autêntico do sertão: cuscuz no vapor, tapiocas rendadas e baião de dois com autoatendimento multicanal, KDS da Cozinha e API integrada." />
+  <meta name="twitter:image" content="https://lucasgabrieldfs.github.io/Raizes-do-Nordeste/images/og-preview.jpg" />
+  <meta name="theme-color" content="#9a3412" />
+
   <!-- Folha de Estilos do Design System -->
-  <link rel="stylesheet" href="css/styles.css?v=2.2" />
+  <link rel="stylesheet" href="css/styles.css?v=2.3" />
 </head>
 <body>
 
@@ -48,7 +72,7 @@
       <div class="header-controls">
         
         <!-- Seleção de Loja / Unidade -->
-        <div class="control-group">
+        <div class="control-group control-group-unit">
           <label for="unitSelector" class="control-label">Unidade / Loja</label>
           <select id="unitSelector" class="select-custom">
             <option value="1" selected>Recife - Matriz (PE)</option>
@@ -58,7 +82,7 @@
         </div>
 
         <!-- Seletor Obrigatório de canalPedido (Enum) com Telas Dedicadas -->
-        <div class="control-group">
+        <div class="control-group control-group-channels">
           <span class="control-label">Telas dos Canais de Atendimento</span>
           <div class="channel-selector" role="group" aria-label="Canal do Pedido">
             <button class="channel-btn active" data-channel="TOTEM" title="Totem de Autoatendimento em Loja">🖥️ TOTEM</button>
@@ -71,8 +95,8 @@
 
       </div>
 
-      <!-- Alternador de Visão de Operação (Canais vs Cozinha KDS vs Monitor API) -->
-      <div style="display: flex; align-items: center; gap: 12px;">
+      <!-- Ações do Cabeçalho: Modos de Visão & Ações de Usuário -->
+      <div class="header-actions">
         
         <div class="view-mode-tabs" role="tablist">
           <button class="view-tab-btn active" data-view="CHANNEL" role="tab" title="Exibe a tela especializada do canal selecionado">🛍️ Canal</button>
@@ -80,17 +104,20 @@
           <button class="view-tab-btn" data-view="MONITOR" role="tab" title="Painel de Integração de API & Auditoria">📊 Monitor & API</button>
         </div>
 
-        <!-- Botão de Autenticação JWT & Perfis de Teste RBAC -->
-        <button id="btnOpenAuthModal" class="auth-trigger-btn" onclick="openAuthModal()" title="Autenticação JWT & Perfis RBAC">
-          <span id="authBadgeIcon">👤</span>
-          <span id="authBadgeLabel">Lucas Gabriel de Freitas Silva</span>
-          <span id="authBadgeRole" class="auth-role-tag CLIENTE">CLIENTE</span>
-        </button>
+        <!-- Ações de Usuário & Carrinho -->
+        <div class="header-user-actions">
+          <!-- Botão de Autenticação JWT & Perfis de Teste RBAC -->
+          <button id="btnOpenAuthModal" class="auth-trigger-btn" onclick="openAuthModal()" title="Autenticação JWT & Perfis RBAC">
+            <span id="authBadgeIcon">👤</span>
+            <span id="authBadgeLabel">Lucas</span>
+            <span id="authBadgeRole" class="auth-role-tag CLIENTE">CLIENTE</span>
+          </button>
 
-        <button id="btnOpenCart" class="cart-trigger-btn" aria-label="Abrir Carrinho de Compras">
-          <span>Cesta</span>
-          <span id="cartBadgeCount" class="cart-count-badge">0</span>
-        </button>
+          <button id="btnOpenCart" class="cart-trigger-btn" aria-label="Abrir Carrinho de Compras">
+            <span>🛒</span>
+            <span id="cartBadgeCount" class="cart-count-badge">0</span>
+          </button>
+        </div>
 
       </div>
 
@@ -1175,6 +1202,6 @@
   </footer>
 
   <!-- Script da Aplicação Resiliente & Multicanal -->
-  <script src="js/app.js?v=2.2"></script>
+  <script src="js/app.js?v=2.3"></script>
 </body>
 </html>

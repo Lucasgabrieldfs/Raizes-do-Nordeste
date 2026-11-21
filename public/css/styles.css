@@ -139,6 +139,18 @@ body {
   gap: 20px;
 }
 
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.header-user-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
 /* Logomarca */
 .brand {
   display: flex;
@@ -1522,36 +1534,413 @@ body {
   font-size: 0.75rem;
 }
 
-/* Responsividade Mobile */
-@media (max-width: 900px) {
-  .header-container {
-    flex-wrap: wrap;
-  }
-  .header-controls {
-    order: 3;
-    width: 100%;
-    justify-content: space-between;
-    overflow-x: auto;
-  }
-  .hero-content {
+/* ==========================================================================
+   RESPONSIVIDADE MULTIDISPOSITIVOS (DESKTOP, TABLET & MOBILE)
+   ========================================================================== */
+
+/* Barra de conformidade acadêmica */
+@media (max-width: 768px) {
+  .topbar-academic-notice {
     flex-direction: column;
     text-align: center;
+    padding: 6px 12px;
+    gap: 4px;
+    font-size: 0.72rem;
   }
-  .hero-features {
+  .topbar-academic-notice .academic-meta {
+    flex-wrap: wrap;
     justify-content: center;
+    gap: 6px 12px;
+    font-size: 0.68rem;
   }
+}
+
+/* Tablet e Mobile (<= 900px) */
+@media (max-width: 900px) {
+  .main-header {
+    position: sticky;
+    top: 0;
+  }
+  
+  .header-container {
+    display: grid;
+    grid-template-areas:
+      "brand actions"
+      "tabs tabs"
+      "controls controls";
+    grid-template-columns: 1fr auto;
+    gap: 10px;
+    padding: 10px 16px;
+    align-items: center;
+  }
+
+  .brand {
+    grid-area: brand;
+  }
+
+  .header-actions {
+    grid-area: unset;
+    display: contents;
+  }
+
+  .header-user-actions {
+    grid-area: actions;
+    justify-self: end;
+  }
+
+  .view-mode-tabs {
+    grid-area: tabs;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1.15fr 1fr;
+    gap: 3px;
+    padding: 3px;
+    background: #f1f5f9;
+  }
+
+  .view-tab-btn {
+    padding: 8px 6px;
+    font-size: 0.78rem;
+    justify-content: center;
+    text-align: center;
+    gap: 4px;
+  }
+
+  .header-controls {
+    grid-area: controls;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 8px;
+  }
+
+  .control-group-unit,
+  .control-group-channels {
+    width: 100%;
+  }
+
+  .control-group-unit .select-custom {
+    width: 100%;
+    padding: 8px 12px;
+    font-size: 0.85rem;
+  }
+
+  /* Carrossel de botões de canais com scroll horizontal suave */
+  .channel-selector {
+    display: flex;
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding: 4px;
+    gap: 6px;
+  }
+
+  .channel-selector::-webkit-scrollbar {
+    display: none;
+  }
+
+  .channel-btn {
+    flex: 0 0 auto;
+    padding: 7px 14px;
+    font-size: 0.78rem;
+    white-space: nowrap;
+  }
+
+  /* Hero Banner proporcional */
+  .hero-banner {
+    padding: 24px 16px;
+  }
+
+  .hero-content {
+    flex-direction: column;
+    text-align: left;
+    gap: 16px;
+  }
+
+  .hero-title {
+    font-size: 1.6rem;
+    line-height: 1.22;
+  }
+
+  .hero-desc {
+    font-size: 0.88rem;
+    line-height: 1.5;
+    margin-bottom: 14px;
+  }
+
+  .hero-features {
+    justify-content: flex-start;
+    gap: 10px 16px;
+  }
+
+  .hero-feature-item {
+    font-size: 0.8rem;
+  }
+
   .hero-active-channel-card {
     width: 100%;
-    text-align: center;
+    padding: 14px;
   }
-  .active-channel-name {
-    justify-content: center;
-  }
+
+  /* Cart Drawer responsivo */
   .cart-drawer {
     max-width: 100%;
   }
+
   .payment-methods-grid {
     grid-template-columns: 1fr;
+  }
+}
+
+/* Smartphones (<= 600px) */
+@media (max-width: 600px) {
+  .header-container {
+    padding: 8px 12px;
+    gap: 8px;
+  }
+
+  .brand-icon {
+    width: 36px;
+    height: 36px;
+    font-size: 1.25rem;
+  }
+
+  .brand-text h1 {
+    font-size: 1.05rem;
+  }
+
+  .auth-trigger-btn {
+    padding: 6px 10px;
+    font-size: 0.72rem;
+    gap: 5px;
+  }
+
+  .auth-trigger-btn #authBadgeLabel {
+    display: none;
+  }
+
+  .cart-trigger-btn {
+    padding: 6px 12px;
+    font-size: 0.78rem;
+  }
+
+  .view-tab-btn {
+    font-size: 0.74rem;
+    padding: 7px 4px;
+  }
+
+  /* Hero banner super compacto e proporcional no celular */
+  .hero-banner {
+    padding: 18px 14px;
+  }
+
+  .hero-tag {
+    font-size: 0.68rem;
+    padding: 3px 8px;
+    margin-bottom: 8px;
+  }
+
+  .hero-title {
+    font-size: 1.35rem;
+    line-height: 1.2;
+    margin-bottom: 8px;
+  }
+
+  .hero-desc {
+    font-size: 0.82rem;
+    line-height: 1.45;
+    margin-bottom: 12px;
+  }
+
+  .hero-feature-item {
+    font-size: 0.75rem;
+  }
+
+  /* Barra de contexto de canal */
+  .channel-context-banner {
+    padding: 10px 14px;
+    gap: 8px;
+  }
+
+  .channel-context-icon {
+    width: 36px;
+    height: 36px;
+    font-size: 1.4rem;
+  }
+
+  .channel-context-desc h3 {
+    font-size: 0.95rem;
+  }
+
+  .channel-context-desc p {
+    font-size: 0.74rem;
+  }
+
+  .channel-feat-pill {
+    font-size: 0.68rem;
+    padding: 3px 8px;
+  }
+
+  /* Totem no celular */
+  .totem-kiosk-wrapper {
+    padding: 0 4px;
+    margin: 8px auto;
+  }
+
+  .totem-kiosk-frame {
+    padding: 8px;
+    border-radius: 16px;
+    border-width: 2px;
+  }
+
+  .totem-kiosk-screen {
+    border-radius: 12px;
+    min-height: auto;
+  }
+
+  .totem-products-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+
+  .totem-product-tile {
+    padding: 8px;
+  }
+
+  .totem-product-tile img {
+    height: 95px;
+  }
+
+  .totem-product-tile h4 {
+    font-size: 0.8rem;
+    min-height: 32px;
+  }
+
+  .totem-product-tile .totem-tile-price {
+    font-size: 1rem;
+    margin: 4px 0;
+  }
+
+  .totem-btn-touch-add {
+    padding: 8px 6px;
+    font-size: 0.75rem;
+  }
+
+  /* Smartphone mock (Canal App) no celular */
+  .app-channel-wrapper {
+    padding: 0;
+    margin: 8px auto;
+  }
+
+  .smartphone-frame {
+    border-radius: 20px;
+    padding: 4px;
+    border-width: 2px;
+    box-shadow: var(--shadow-md);
+  }
+
+  .smartphone-notch {
+    display: none;
+  }
+
+  .smartphone-screen {
+    border-radius: 16px;
+    height: auto;
+    min-height: 560px;
+  }
+
+  /* Balcão PDV no celular */
+  .balcao-pos-wrapper {
+    padding: 0 4px;
+    margin: 8px auto;
+  }
+
+  .balcao-pos-frame {
+    border-radius: 14px;
+  }
+
+  .balcao-pos-header {
+    padding: 10px 14px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .balcao-pos-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .balcao-catalog-side,
+  .balcao-ticket-side {
+    padding: 12px;
+  }
+
+  /* Pickup no celular */
+  .pickup-channel-wrapper {
+    padding: 0 4px;
+    margin: 8px auto;
+  }
+
+  .pickup-flow-card {
+    padding: 14px;
+  }
+
+  .pickup-slots-selector {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+  }
+
+  .pickup-pin-large {
+    font-size: 1.8rem;
+    letter-spacing: 2px;
+  }
+
+  /* Vitrine Web / Catálogo geral */
+  .products-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .menu-section {
+    padding: 20px 12px;
+  }
+
+  /* KDS da Cozinha no celular */
+  .kds-board {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .kds-column {
+    min-height: auto;
+  }
+
+  /* Modais no celular */
+  .modal-overlay {
+    padding: 10px;
+  }
+
+  .modal-card {
+    max-height: 94vh;
+    border-radius: var(--radius-lg);
+  }
+
+  .modal-header,
+  .modal-body,
+  .modal-footer {
+    padding: 16px 14px;
+  }
+
+  .auth-quick-users-grid {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
+  /* Monitor API no celular */
+  .monitor-summary-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
   }
 }
 

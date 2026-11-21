@@ -60,9 +60,10 @@ class UninterNumberedCanvas(canvas.Canvas):
             self.drawImage(logo_path, lx, ly, width=lw, height=lh, mask='auto')
 
         # Texto do cabeçalho à direita
-        self.setFont("Helvetica", 8)
+        self.setFont("Helvetica-Bold", 8)
         self.setFillColor(NAVY_PRIMARY)
-        self.drawRightString(w - 15 * mm, h - 15 * mm, "Roteiro de Atividade Prática de")
+        self.drawRightString(w - 15 * mm, h - 15 * mm, "Raízes do Nordeste - Projeto de Desenvolvimento")
+        self.setFont("Helvetica", 8)
         self.drawRightString(w - 15 * mm, h - 19 * mm, "Projeto Multidisciplinar – Trilha Back-End")
 
         # Linha dourada divisória
@@ -135,7 +136,9 @@ def build_pdf(filename="4840330_Projeto_Back_End.PDF"):
         leftMargin=18 * mm,
         rightMargin=18 * mm,
         topMargin=26 * mm,
-        bottomMargin=20 * mm
+        bottomMargin=20 * mm,
+        title="Raízes do Nordeste - Projeto de Desenvolvimento",
+        author="Lucas Gabriel de Freitas Silva (RU: 4840330)"
     )
 
     styles = getSampleStyleSheet()
@@ -158,6 +161,15 @@ def build_pdf(filename="4840330_Projeto_Back_End.PDF"):
         leading=23,
         alignment=1,
         textColor=GOLD_ACCENT
+    )
+    s_title_cover_sub = ParagraphStyle(
+        'CoverTitleSub',
+        parent=styles['Normal'],
+        fontName='Helvetica-Bold',
+        fontSize=12,
+        leading=16,
+        alignment=1,
+        textColor=NAVY_PRIMARY
     )
     s_cover_student = ParagraphStyle(
         'CoverStudent',
@@ -280,13 +292,13 @@ def build_pdf(filename="4840330_Projeto_Back_End.PDF"):
     # ==========================================
     # PÁGINA 1: CAPA
     # ==========================================
-    story.append(Spacer(1, 115 * mm))
-    story.append(Paragraph("PROJETO MULTIDISCIPLINAR", s_title_cover1))
-    story.append(Spacer(1, 4 * mm))
-    story.append(Paragraph("TRILHA: BACK-END", s_title_cover2))
-    story.append(Spacer(1, 2 * mm))
-    story.append(Paragraph('REDE "RAIZES DO NORDESTE"', s_title_cover2))
-    story.append(Spacer(1, 20 * mm))
+    story.append(Spacer(1, 108 * mm))
+    story.append(Paragraph('REDE "RAÍZES DO NORDESTE"', s_title_cover1))
+    story.append(Spacer(1, 3 * mm))
+    story.append(Paragraph("PROJETO DE DESENVOLVIMENTO", s_title_cover2))
+    story.append(Spacer(1, 3 * mm))
+    story.append(Paragraph("Projeto Multidisciplinar — Trilha Back-End", s_title_cover_sub))
+    story.append(Spacer(1, 18 * mm))
 
     # Box com dados do estudante
     student_box = [
@@ -386,7 +398,8 @@ def build_pdf(filename="4840330_Projeto_Back_End.PDF"):
     story.append(Spacer(1, 3 * mm))
     story.append(Paragraph(
         "<i>Todos os artefatos descritos ao longo deste documento encontram-se plenamente implementados, testados e publicamente "
-        "auditáveis no repositório oficial do projeto, atendendo com excelência aos critérios da Tabela Consolidada de Avaliação UNINTER.</i>",
+        "auditáveis no repositório oficial do projeto no GitHub: <b>https://github.com/Lucasgabrieldfs/Raizes-do-Nordeste.git</b> "
+        "(Demonstração Web: <b>https://lucasgabrieldfs.github.io/Raizes-do-Nordeste/</b>), atendendo com excelência aos critérios da Tabela Consolidada de Avaliação UNINTER.</i>",
         s_body
     ))
     story.append(PageBreak())
@@ -938,37 +951,39 @@ def build_pdf(filename="4840330_Projeto_Back_End.PDF"):
     story.append(Paragraph("6.1 Links Públicos Oficiais", s_h2))
     links_data = [
         [Paragraph("Artefato", s_table_header), Paragraph("Endereço / URL Pública e Reprodutível", s_table_header), Paragraph("Descrição", s_table_header)],
-        [Paragraph("<b>Repositório Git Público</b>", s_table_cell_bold), Paragraph("https://github.com/lucasgabriel-uninter/raizes-do-nordeste-api", s_table_cell), Paragraph("Código-fonte completo com histórico superior a 5 commits estruturados.", s_table_cell)],
-        [Paragraph("<b>Documentação Swagger UI</b>", s_table_cell_bold), Paragraph("http://localhost:3000/api-docs", s_table_cell), Paragraph("Especificação OpenAPI 3.0 com try-it-out interativo de todos os endpoints.", s_table_cell)],
-        [Paragraph("<b>Painel Web Interativo</b>", s_table_cell_bold), Paragraph("http://localhost:3000/public (ou /demo)", s_table_cell), Paragraph("Simulador visual do Totem de Autoatendimento e tela KDS da Cozinha.", s_table_cell)],
-        [Paragraph("<b>Coleção Postman</b>", s_table_cell_bold), Paragraph("./raizes_nordeste_postman_collection.json", s_table_cell), Paragraph("Arquivo JSON contendo as 10 requisições organizadas em pastas.", s_table_cell)],
+        [Paragraph("<b>Repositório Git Oficial</b>", s_table_cell_bold), Paragraph("https://github.com/Lucasgabrieldfs/Raizes-do-Nordeste.git", s_table_cell), Paragraph("Código-fonte completo versionado com histórico estruturado no GitHub.", s_table_cell)],
+        [Paragraph("<b>Demonstração Online (Web)</b>", s_table_cell_bold), Paragraph("https://lucasgabrieldfs.github.io/Raizes-do-Nordeste/", s_table_cell), Paragraph("Painel visual interativo multicanal publicado via GitHub Pages.", s_table_cell)],
+        [Paragraph("<b>Documentação Swagger UI</b>", s_table_cell_bold), Paragraph("http://localhost:3000/api-docs", s_table_cell), Paragraph("Especificação OpenAPI 3.0 interativa para testes de todos os endpoints.", s_table_cell)],
+        [Paragraph("<b>Painel Local (Totem / KDS)</b>", s_table_cell_bold), Paragraph("http://localhost:3000/public (ou /demo)", s_table_cell), Paragraph("Simulador visual com fallback offline para Live Server (porta 5500).", s_table_cell)],
+        [Paragraph("<b>Coleção Postman Oficial</b>", s_table_cell_bold), Paragraph("./raizes_nordeste_postman_collection.json", s_table_cell), Paragraph("Arquivo JSON com suíte de 10 cenários de testes automatizados.", s_table_cell)],
     ]
     t_links = Table(links_data, colWidths=[38 * mm, 75 * mm, 52 * mm])
     t_links.setStyle(TableStyle([
         ('BACKGROUND', (0,0), (-1,0), NAVY_PRIMARY),
         ('GRID', (0,0), (-1,-1), 0.5, GRAY_BORDER),
         ('VALIGN', (0,0), (-1,-1), 'TOP'),
-        ('TOPPADDING', (0,0), (-1,-1), 1.5 * mm),
-        ('BOTTOMPADDING', (0,0), (-1,-1), 1.5 * mm),
+        ('TOPPADDING', (0,0), (-1,-1), 1.2 * mm),
+        ('BOTTOMPADDING', (0,0), (-1,-1), 1.2 * mm),
     ]))
     story.append(t_links)
-    story.append(Spacer(1, 3 * mm))
+    story.append(Spacer(1, 2 * mm))
 
     story.append(Paragraph("6.2 Passo a Passo de Execução Local (Guia do Avaliador)", s_h2))
     steps_code = (
-        '# 1. Clonar o repositório público\n'
-        'git clone https://github.com/lucasgabriel-uninter/raizes-do-nordeste-api.git\n'
-        'cd raizes-do-nordeste-api\n\n'
+        '# 1. Clonar o repositório público oficial no GitHub\n'
+        'git clone https://github.com/Lucasgabrieldfs/Raizes-do-Nordeste.git\n'
+        'cd Raizes-do-Nordeste\n\n'
         '# 2. Instalar as dependências do projeto\n'
         'npm install\n\n'
         '# 3. Configurar ambiente e executar migrações com carga inicial (Seed)\n'
         'cp .env.example .env\n'
-        'npm run setup   # Cria o banco SQLite, roda as migrations e popula produtos nordestinos e lojas\n\n'
+        'npm run setup   # Cria o banco SQLite, roda as migrations e popula produtos e lojas\n\n'
         '# 4. Iniciar a API REST\n'
         'npm start       # Servidor operando em http://localhost:3000\n\n'
         '# 5. Acessos do Avaliador:\n'
         '# -> Swagger UI interativo: http://localhost:3000/api-docs\n'
         '# -> Simulador visual da lanchonete: http://localhost:3000/demo\n'
+        '# -> Demonstração online no GitHub Pages: https://lucasgabrieldfs.github.io/Raizes-do-Nordeste/\n'
     )
     t_steps = Table([[Paragraph(steps_code.replace('\n', '<br/>').replace(' ', '&nbsp;'), s_code)]], colWidths=[165 * mm])
     t_steps.setStyle(TableStyle([
@@ -1093,3 +1108,11 @@ def build_pdf(filename="4840330_Projeto_Back_End.PDF"):
 if __name__ == "__main__":
     out_file = sys.argv[1] if len(sys.argv) > 1 else "4840330_Projeto_Back_End.PDF"
     build_pdf(out_file)
+    
+    # Gera cópias com os nomes descritivos solicitados pelo aluno
+    import shutil
+    alt_file1 = "Raizes do Nordeste - Projeto de Desenvolvimento.pdf"
+    alt_file2 = "Raizes do Nordeste - Projeto de Desenvolvimeto.pdf"
+    shutil.copyfile(out_file, alt_file1)
+    shutil.copyfile(out_file, alt_file2)
+    print(f"Cópias geradas com sucesso:\n - {alt_file1}\n - {alt_file2}")
